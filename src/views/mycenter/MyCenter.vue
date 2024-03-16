@@ -2,7 +2,7 @@
   <div class="v_mycenter g-flex-column">
     <div class="v-head">
       <div class="g-flex-align-center g-flex-justify-center ">
-          <img src="/img/icon/icon_vip.png" alt="logo" class="public_headerLogo">
+          <img src="@/assets/img/topimg.png" alt="logo" class="public_headerLogo">
         </div>
     </div>
     <div class="v-mycenter-container">
@@ -69,7 +69,7 @@
       </div>
 
       <div class="v-mycenter-top-card">
-        <van-grid class="v-mycenter-top-card-list" :border="false" :column-num="3">
+        <van-grid class="v-mycenter-top-card-list" :border="false" :column-num="3" style="display: none;">
           <van-grid-item>
             <div class="v-mycenter-top-card-item g-flex-column g-flex-align-center">
               <div class="v-mycenter-top-card-item-val">
@@ -183,6 +183,51 @@
             </div>
           </van-grid-item>-->
         </van-grid>
+        <div class="v-mycenter-top-card-list">
+          <div class="v-mycenter-top-card-item g-flex-align-center">
+              <div class="v-mycenter-top-card-item-title">
+                <span>{{ i18n.zongyuerText }}</span>
+              </div>
+              <div class="v-mycenter-top-card-item-val">
+                <span>{{ Number(userInfo.balance).toFixed(2)  }}</span>
+              </div>
+          </div>
+          
+          <div class="v-mycenter-top-card-item  g-flex-align-center">
+             <div class="v-mycenter-top-card-item-title">
+                <span>{{ i18n.jinriShouYiText }}</span>
+              </div>
+            <div class="v-mycenter-top-card-item-val">
+                <span>{{ Number(totalInfo.todayQuantifyProfit).toFixed(2) }} </span>
+              </div>
+            </div>
+
+            <div class="v-mycenter-top-card-item g-flex-align-center">
+              <div class="v-mycenter-top-card-item-title">
+                <span>{{ i18n.zuoriShouYiText }}</span>
+              </div>
+              <div class="v-mycenter-top-card-item-val">
+                <span>{{ Number(totalInfo.yesterdayQuantifyProfit).toFixed(2) }} </span>
+              </div>
+            
+            </div>
+
+
+            <div class="v-mycenter-top-card-item  g-flex-align-center">
+              <div class="v-mycenter-top-card-item-title">
+                <span>{{ i18n.zongShouYiText }}</span>
+              </div>
+
+              <div class="v-mycenter-top-card-item-val">
+                <span>{{ Number(totalInfo.totalProfit).toFixed(2) }}</span>
+              </div>
+             
+            </div>
+
+            
+             
+
+        </div>
       </div>
 
       <div v-if="userInfo.levelNext.id" class="v-mycenter-top-next">
@@ -640,11 +685,16 @@ let selectLangObj = computed(() => {
  
   .v-head {
     width: 100%;
-    background: url(/img/icon/quantify_top_inset.png) 50% 50% no-repeat;
-    background-size: cover;
-    padding-top: 20px;
-    padding: 20px 10px 0px;
+    background: url('@/assets/img/mycenter_ headBg.png') 50% 50% no-repeat;
+    background-size: 100% 100%;
+    padding: 12px 10px 0px;
+    height: 130px;
     overflow: hidden;
+
+    .public_headerLogo {
+      width: 131px;
+                height: 39px;
+    }
     .v-head-back-icon {
       position: absolute;
       left: 0;
@@ -679,9 +729,11 @@ let selectLangObj = computed(() => {
     }
   }
   .v-mycenter-container {
-    padding: 30px 10px 10px 10px;
+    padding: 0px 10px 10px 10px;
     flex: 1;
     overflow: auto;
+    margin-top: -60px;
+
     .v-mycenter-head-box {
       overflow: hidden;
       position: relative;
@@ -689,6 +741,7 @@ let selectLangObj = computed(() => {
           align-items: end;
           padding: 2px;
           justify-content: space-between;
+          padding-bottom: 10px;
       .v-mycenter-head-right-img {
           overflow: hidden;
           float: left;
@@ -715,7 +768,8 @@ let selectLangObj = computed(() => {
     .v-mycenter-head {
       float: right;
       width: calc(100% - 110px);
-      box-shadow: 0px 0px 5px #d3d3d3;
+      // box-shadow: 0px 0px 5px #d3d3d3;
+      box-shadow: 2px 1px 7px 2px rgba(12, 13, 12, 0.1);
       background: var(--g-white);
       border-radius: 8px;
       padding: 15px 10px;
@@ -839,12 +893,16 @@ let selectLangObj = computed(() => {
     }
 
     .v-mycenter-top-card {
-      padding: 15px 0px;
-
+      padding: 10px 0px;
+      box-shadow: 0px 0px 5px #d3d3d3;;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      margin-top: 20px;
       .v-mycenter-top-card-list {
-        border-radius: 10px;
+       
         background: var(--g-white);
-        box-shadow: 0px 0px 5px #d3d3d3;;
+        
+        padding: 0px 20px;
 
         .van-grid-item {
           background: transparent;
@@ -854,22 +912,48 @@ let selectLangObj = computed(() => {
           }
         }
 
+
+        .v-mycenter-top-card-item + .v-mycenter-top-card-item {
+          border-top: 1px solid #D4D4D4;
+        }
         .v-mycenter-top-card-item {
+          
           flex: 1;
-          line-height: 18px;
-          color: var(--g-black);
+          line-height: 20px;
           position: relative;
+          color: #000;
+          padding: 10px 0px;
 
           .v-mycenter-top-card-item-title {
             text-align: center;
             font-size: 12px;
             padding-top: 5px;
-            color: #B4B1C0;
+            width: 50%;
+            font-weight: 700;
+            position: relative;
+            border-right: 1px solid #D4D4D4;
+            padding-right: 10px;
+            text-align: right;
+            
+            ::after {
+              content: '';
+              width: 12px;
+              height: 12px;
+              border-radius: 50%;
+              background: #6400FE;
+              position: absolute;
+              left: 0px;
+              top: 50%;
+              margin-top: -6px;
+            }
           }
 
           .v-mycenter-top-card-item-val {
-            font-weight: 700;
-            font-size: 16px;
+            font-weight: 900;
+            font-size: 18px;
+            width: 50%;
+            padding-left: 10px;
+            
           }
 
           // &:nth-of-type(1) {
@@ -959,7 +1043,7 @@ let selectLangObj = computed(() => {
     }
 
     .v-mycenter-content-list {
-      box-shadow: 0px 0px 5px #d3d3d3;;
+      box-shadow: 2px 1px 7px 2px rgba(12, 13, 12, 0.1);
       margin-top: 15px;
       border-radius: 8px;
       background: var(--g-white);
