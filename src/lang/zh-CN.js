@@ -172,7 +172,9 @@ const lang = {
     tishiThreeText: '3、每次提款金额最高20,000 USDT',
     tishiFourText: '4、提款将在0-72小时内完成，到账后48小时可发起新的提款。',
     tishiFiveText: '4、提现只能使用USDT-TRC20地址。',
-    tishiSixText: '5、一个账户只能绑定一个钱包地址'
+    tishiSixText: '5、一个账户只能绑定一个钱包地址',
+    availableText: 'Available Balance',
+    currencyText: 'Currency',
   },
 
   cashoutControl: {
@@ -200,7 +202,7 @@ const lang = {
     statusWaitText: '待付款',
     cashoutBiZhongText: '提款币种'
   },
-  
+
   cashoutSelect: {
     titleText: '取款方式',
     bankhuikuanText: '银行汇款',
@@ -484,7 +486,7 @@ const lang = {
     zuixiaoLiangHuaShuLiangText: '最小量化数量',
     zuidaLiangHuaShuLiangText: '最大量化数量',
     ciText: '{val1}次',
-    
+
   },
 
   lianghuaHistory: {
@@ -929,7 +931,7 @@ const lang = {
     uploadText: '上传凭证',
     selectImgText: '选择图片'
   },
-  
+
   rechargeSelect: {
     titleText: '充值方式',
     selectText: '选择充值方式',
@@ -987,7 +989,7 @@ const lang = {
     mywalletText: '我的钱包',
     bindEmailTipsText: '请联系客服修改'
   },
- 
+
   share: {
     titleText: '分享',
     shareLinkText: '分享链接'
@@ -1091,7 +1093,7 @@ const lang = {
     jiesuanText: `结算中`,
     nocangweiText: `当前无持有仓位`
   },
-  
+
   chartQiQuanPop: {
     titleText: '限时',
     productNameText: '产品名称',
@@ -1328,7 +1330,7 @@ const lang = {
   bussinessPwdPop: {
     titleText: '支付密码'
   },
-  
+
   cashoutDetailPop: {
     shibaiyuanyingText: "失败原因",
     titleText: '详情',
@@ -1429,7 +1431,7 @@ const lang = {
   },
 
 
-  
+
 
 
 
@@ -1682,7 +1684,7 @@ const lang = {
     sureText: '确定'
   },
 
- 
+
   shenggou: {
     titleText: '新币申购',
     myshenggouText: '我的申购',
@@ -1749,7 +1751,7 @@ const lang = {
     comfirmText: '确认',
     jianMoreText: '最多减少'
   },
-  
+
   hourechargeselect: {
     titleText: '充值',
     c2cText: 'C2C充值',

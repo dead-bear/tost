@@ -1,97 +1,161 @@
 <template>
-  <div class="v_cash_out_coin g-flex-column">
-    <div class="v-head g-flex-align-center">
-      <div @click="$router.go(-1)" class="v-head-back-icon g-flex-align-center">
-        <i class="iconfont icon-zuo"></i>
-      </div>
-      <div class="v-head-title g-flex-align-center g-flex-justify-center">
-        <span>{{ i18n.titleText }}</span>
-      </div>
+  <div class="tost-container">
+    <div class="t-head">
+      <img :src="left" @click="$router.go(-1)" alt="">
+      <img :src="topImg" alt="">
+      <img :src="history" alt="">
       <!-- <div class="v-head-right g-flex-align-center">
         <i class="iconfont icon-datijilu"></i>
       </div> -->
     </div>
-    <div class="v-cashout-coin-container">
-      <div class="v-cashout-coin-content">
-        <div class="v-cashout-coin-top">
-          <p class="v-cashout-coin-title">{{ i18n.selectText }}</p>
-          <div class="v-cashout-coin-two-select-box">
-            <div class="v-cashout-coin-two-select g-flex-align-center" @click="selectCoinClick">
-              <div class="v-cashout-coin-two-select-left g-flex-align-center">
-                <span>{{ seletCoinItem.obj.currency }}</span>
-              </div>
-              <i class="iconfont icon-xiala" :style="styObjOne"></i>
-            </div>
-            <!-- 选择币 -->
-            <select-coin-pop :coinList="cashoutInfo.info.list" @emitCoinItemClick="emitCoinItemClick"
-              ref="refSelectCoinPop" />
-          </div>
-          <p class="v-cashout-coin-title">{{ i18n.chianText }}</p>
-          <ul class="v-cashout-coin-link-list g-flex-align-center">
-            <li @click="linkItemClick(item, index)" :class="linkIndex == index ? 'active' : ''"
-              class="v-cashout-coin-link-item" v-for="(item, index) in seletCoinItem.obj.chainList" :key="index">
-              <span>{{ item }}</span>
-            </li>
-          </ul>
+    <div class="head-title">
+      <span>{{ i18n.titleText }}</span>
+    </div>
+    <section>
+      <div class="balance-box">
+        <h1>${{canUserWallet.balance}}</h1>
+        <div>
+          <p>{{i18n.availableText || 'Available Balance'}}</p>
+          <p>{{i18n.currencyText || 'Currency'}} <span>{{seletCoinItem.obj.currency}}</span></p>
         </div>
-        <div class="v-cashout-coin-bottom">
-
-          <!-- is-link  value="钱包地址" -->
-          <van-cell class="v-cashout-coin-bottom-address-title" :title="i18n.addressText" value="" />
-          <div class="v-cashout-coin-bottom-address">
-            <van-field :readonly="(cashoutInfo.info.isSelect == 1) ? true : false" v-model="form.info.address" label=""
-              label-width="0"
-              :placeholder="cashoutInfo.info.isSelect == 1 ? `${i18n.addressSelectText}` : `${i18n.addressPlaceholderText}`" />
+      </div>
+      <div class="item">
+        <h5>{{i18n.selectText}}</h5>
+        <div class="v-cashout-coin-two-select-box">
+          <div class="v-cashout-coin-two-select" @click="selectCoinClick">
+            <span>{{ seletCoinItem.obj.currency }}</span>
+            <i class="iconfont icon-xiala" :style="styObjOne"></i>
+          </div>
+          <!-- 选择币 -->
+          <select-coin-pop :coinList="cashoutInfo.info.list" @emitCoinItemClick="emitCoinItemClick"
+                           ref="refSelectCoinPop" />
+        </div>
+      </div>
+      <div class="item">
+        <h5>{{i18n.addressText}}</h5>
+        <van-field :readonly="(cashoutInfo.info.isSelect == 1) ? true : false" v-model="form.info.address" label=""
+                   label-width="0"
+                   :placeholder="cashoutInfo.info.isSelect == 1 ? `${i18n.addressSelectText}` : `${i18n.addressPlaceholderText}`">
+          <template #extra>
             <div v-show="cashoutInfo.info.isSelect == 1" @click="selectAddressClick"
-              class="v-cashout-coin-bottom-address-select">
+                 class="v-cashout-coin-bottom-address-select">
               <i class="iconfont icon-zu15"></i>
             </div>
-          </div>
-          <!-- <van-cell :title="i18n.numText" :value="`${i18n.minText}:${cashoutInfo.min}USDT，${i18n.maxText}:${cashoutInfo.max == -1 ? `${ i18n.nolimitText }`: (cashoutInfo.max + 'USDT')}`"/> -->
-          <div class="v-cashout-coin-bottom-input-num">
-            <van-field @input="amountChange" v-model="form.amount" label="" label-width="0"
-              :placeholder="i18n.numTextPlaceholderText + '(' + 'USDT' + ')'" />
+          </template>
+        </van-field>
+      </div>
+      <div class="item">
+        <h5>{{i18n.numText}}</h5>
+        <van-field @input="amountChange" v-model="form.amount" label="" label-width="0"
+                   :placeholder="i18n.numTextPlaceholderText + '(' + 'USDT' + ')'">
+          <template #extra>
             <span @click="allClick">{{ i18n.allText }}</span>
-          </div>
-          <!-- 约等于 -->
-          <div v-show="seletCoinItem.obj.currency != 'USDT' && form.amount"
-            class="v-recharge-bi-yuedengyu g-flex-align-center">
-            <span>≈</span>
-            <p>{{ form.money }} </p>
-            <span>{{ seletCoinItem.obj.currency }}</span>
-          </div>
-
-          <p class="v-cashout-coin-bottom-canuse g-flex-align-center">{{ i18n.shouxuFeiText
-          }}({{ canUserWallet.currency }}): <span> {{ shouxuFei }}</span></p>
-
-          <p v-if="store.system.WithdrawModel == 2" class="v-cashout-coin-bottom-canuse g-flex-align-center">{{
-            i18n.shijidaozhangText
-          }}({{ seletCoinItem.obj.currency }}): <span> {{ shijiDaoZhang }}</span></p>
-
-          <p class="v-cashout-coin-bottom-canuse g-flex-align-center">{{ i18n.canUseText }}({{ canUserWallet.currency }}):
-            <span> {{ canUserWallet.balance }}</span>
-          </p>
-
-          <div v-if="cashoutInfo.remark" class="v-cashout-coin-bottom-tips">
-            {{ cashoutInfo.remark }}
-          </div>
-        </div>
-        <div @click="cashOutClick" class="v-cashout-coin-btn g-flex-align-center g-flex-justify-center">
-          <span>{{ i18n.cashText }}</span>
-        </div>
+          </template>
+        </van-field>
       </div>
-      <div class="v-cashout-info-tips">
-        <div class="v-cashout-info-tips-title">{{ i18n.wenxingtishiText }}:</div>
-        <div class="v-cashout-info-tips-content">
-          1.{{ i18n.tishiOneText }}<br />
-          <!--{{ i18n.tishiTwoText }}<br />-->
-          2.{{ i18n.tishiThreeText }}<br />
-          3.{{ i18n.tishiFourText }}<br />
-          4.{{ i18n.tishiFiveText }}<br />
-          5.{{ i18n.tishiSixText }}<br />
-        </div>
+      <div v-show="seletCoinItem.obj.currency != 'USDT' && form.amount"
+           class="v-recharge-bi-yuedengyu g-flex-align-center">
+        <span>≈</span>
+        <p>{{ form.money }} </p>
+        <span>{{ seletCoinItem.obj.currency }}</span>
       </div>
-    </div>
+
+      <p class="v-cashout-coin-bottom-canuse g-flex-align-center">{{ i18n.shouxuFeiText
+        }}({{ canUserWallet.currency }}): <span> {{ shouxuFei }}</span></p>
+
+      <p v-if="store.system.WithdrawModel == 2" class="v-cashout-coin-bottom-canuse g-flex-align-center">{{
+          i18n.shijidaozhangText
+        }}({{ seletCoinItem.obj.currency }}): <span> {{ shijiDaoZhang }}</span></p>
+
+      <p class="v-cashout-coin-bottom-canuse g-flex-align-center">{{ i18n.canUseText }}({{ canUserWallet.currency }}):
+        <span> {{ canUserWallet.balance }}</span>
+      </p>
+      <div @click="cashOutClick" class="v-cashout-coin-btn g-flex-align-center g-flex-justify-center">
+        <span>{{ i18n.cashText }}</span>
+      </div>
+    </section>
+
+
+
+<!--    <div class="v-cashout-coin-container">-->
+<!--      <div class="v-cashout-coin-content">-->
+<!--        <div class="v-cashout-coin-top">-->
+<!--          <p class="v-cashout-coin-title">{{ i18n.selectText }}</p>-->
+<!--          <div class="v-cashout-coin-two-select-box">-->
+<!--            <div class="v-cashout-coin-two-select g-flex-align-center" @click="selectCoinClick">-->
+<!--              <div class="v-cashout-coin-two-select-left g-flex-align-center">-->
+<!--                <span>{{ seletCoinItem.obj.currency }}</span>-->
+<!--              </div>-->
+<!--              <i class="iconfont icon-xiala" :style="styObjOne"></i>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; 选择币 &ndash;&gt;-->
+<!--            <select-coin-pop :coinList="cashoutInfo.info.list" @emitCoinItemClick="emitCoinItemClick"-->
+<!--              ref="refSelectCoinPop" />-->
+<!--          </div>-->
+<!--          <p class="v-cashout-coin-title">{{ i18n.chianText }}</p>-->
+<!--          <ul class="v-cashout-coin-link-list g-flex-align-center">-->
+<!--            <li @click="linkItemClick(item, index)" :class="linkIndex == index ? 'active' : ''"-->
+<!--              class="v-cashout-coin-link-item" v-for="(item, index) in seletCoinItem.obj.chainList" :key="index">-->
+<!--              <span>{{ item }}</span>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </div>-->
+<!--        <div class="v-cashout-coin-bottom">-->
+
+<!--          &lt;!&ndash; is-link  value="钱包地址" &ndash;&gt;-->
+<!--          <van-cell class="v-cashout-coin-bottom-address-title" :title="i18n.addressText" value="" />-->
+<!--          <div class="v-cashout-coin-bottom-address">-->
+<!--            <van-field :readonly="(cashoutInfo.info.isSelect == 1) ? true : false" v-model="form.info.address" label=""-->
+<!--              label-width="0"-->
+<!--              :placeholder="cashoutInfo.info.isSelect == 1 ? `${i18n.addressSelectText}` : `${i18n.addressPlaceholderText}`" />-->
+<!--            <div v-show="cashoutInfo.info.isSelect == 1" @click="selectAddressClick"-->
+<!--              class="v-cashout-coin-bottom-address-select">-->
+<!--              <i class="iconfont icon-zu15"></i>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          &lt;!&ndash; <van-cell :title="i18n.numText" :value="`${i18n.minText}:${cashoutInfo.min}USDT，${i18n.maxText}:${cashoutInfo.max == -1 ? `${ i18n.nolimitText }`: (cashoutInfo.max + 'USDT')}`"/> &ndash;&gt;-->
+<!--          <div class="v-cashout-coin-bottom-input-num">-->
+<!--            <van-field @input="amountChange" v-model="form.amount" label="" label-width="0"-->
+<!--              :placeholder="i18n.numTextPlaceholderText + '(' + 'USDT' + ')'" />-->
+<!--            <span @click="allClick">{{ i18n.allText }}</span>-->
+<!--          </div>-->
+<!--          &lt;!&ndash; 约等于 &ndash;&gt;-->
+<!--          <div v-show="seletCoinItem.obj.currency != 'USDT' && form.amount"-->
+<!--            class="v-recharge-bi-yuedengyu g-flex-align-center">-->
+<!--            <span>≈</span>-->
+<!--            <p>{{ form.money }} </p>-->
+<!--            <span>{{ seletCoinItem.obj.currency }}</span>-->
+<!--          </div>-->
+
+<!--          <p class="v-cashout-coin-bottom-canuse g-flex-align-center">{{ i18n.shouxuFeiText-->
+<!--          }}({{ canUserWallet.currency }}): <span> {{ shouxuFei }}</span></p>-->
+
+<!--          <p v-if="store.system.WithdrawModel == 2" class="v-cashout-coin-bottom-canuse g-flex-align-center">{{-->
+<!--            i18n.shijidaozhangText-->
+<!--          }}({{ seletCoinItem.obj.currency }}): <span> {{ shijiDaoZhang }}</span></p>-->
+
+<!--          <p class="v-cashout-coin-bottom-canuse g-flex-align-center">{{ i18n.canUseText }}({{ canUserWallet.currency }}):-->
+<!--            <span> {{ canUserWallet.balance }}</span>-->
+<!--          </p>-->
+
+<!--          <div v-if="cashoutInfo.remark" class="v-cashout-coin-bottom-tips">-->
+<!--            {{ cashoutInfo.remark }}-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--      </div>-->
+<!--      <div class="v-cashout-info-tips">-->
+<!--        <div class="v-cashout-info-tips-title">{{ i18n.wenxingtishiText }}:</div>-->
+<!--        <div class="v-cashout-info-tips-content">-->
+<!--          1.{{ i18n.tishiOneText }}<br />-->
+<!--          &lt;!&ndash;{{ i18n.tishiTwoText }}<br />&ndash;&gt;-->
+<!--          2.{{ i18n.tishiThreeText }}<br />-->
+<!--          3.{{ i18n.tishiFourText }}<br />-->
+<!--          4.{{ i18n.tishiFiveText }}<br />-->
+<!--          5.{{ i18n.tishiSixText }}<br />-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
 
 
     <!-- 密码 -->
@@ -101,8 +165,11 @@
       @emitSelectAddress="emitSelectAddress" ref="refSelectWalletAddressPop" />
   </div>
 </template>
- 
+
 <script setup>
+import topImg from '@/assets/img/topimg.png'
+import left from '@/assets/img/left.png'
+import history from '@/assets/img/history.png'
 import SelectCoinPop from '@/components/SelectCoinPop.vue'
 import { apiCashout, apiGetCashoutInfo, apiGetUserInfo, apiGetWalletAddressList, apiGetDuoWalletList } from '@/utils/api.js'
 import BussinessPwdPop from '@/components/BussinessPwdPop.vue'
@@ -365,12 +432,10 @@ const shouxuFei = computed(() => {
   }
 })
 </script>
- 
+
 <style lang='scss'>
-.v_cash_out_coin {
-  height: 100%;
-  overflow: auto;
-  background: var(--g-white);
+@import "@/styles/withdrawal";
+
 
   .v-head {
     height: 46px;
@@ -658,4 +723,4 @@ const shouxuFei = computed(() => {
     }
 
   }
-}</style>
+</style>

@@ -62,7 +62,7 @@ export default defineConfig({
             '/ws': {
                 target: url,
                 changeOrigin: true,
-                ws: false,
+                ws: true,
                 // rewrite: (path) => path.replace(/^\/devws/, '/ws')
             },
         }
