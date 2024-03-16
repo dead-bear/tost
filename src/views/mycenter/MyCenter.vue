@@ -9,7 +9,10 @@
      
       <div class="v-mycenter-head-box">
         <div @click="$router.push({ name: 'safecenter' })" class="v-mycenter-head-right-img">
-          <img :src="userInfo.level.img" alt="" class="v-mycenter-head-right-level"/>
+          <!-- <img :src="userInfo.level.img" alt="" class="v-mycenter-head-right-level"/> -->
+
+          
+          <img src="@/assets/img/mycenter_ vip.png" alt="" class="v-mycenter-head-right-level"/>
           <img :src="userInfo.avatar" alt="" class="v-mycenter-head-right-headImg">
         </div>
         
@@ -24,38 +27,38 @@
           </div> -->
           <div @click.stop="copyClick(userInfo.user_name)" class="v-mycenter-head-bottom g-flex-space-between">
             <div class="v-mycenter-head-bottom-copy g-flex-align-center">
-              <img src="/img/icon/mine_information_copy.png" alt="" />
+              <img src="@/assets/img/mycenter_ username.png" alt="" />
               <div class="v-mycenter-head-bottom-id">
               {{ userInfo.user_name}}
             </div>
             </div>
             
             <div class="v-mycenter-head-bottom-copy g-flex-align-center">
-              <img src="/img/icon/mine_information_copy.png" alt="" />
+              <img src="@/assets/img/mycenter_ copy.png" alt="" />
             </div>
           </div>
           <div @click.stop="copyClick(userInfo.id)" class="v-mycenter-head-bottom g-flex-space-between">
             <div class="v-mycenter-head-bottom-copy g-flex-align-center">
-              <img src="/img/icon/mine_information_copy.png" alt="" />
+              <img src="@/assets/img/mycenter_ id.png" alt="" />
               <div class="v-mycenter-head-bottom-id">
               {{ userInfo.id }}
             </div>
             </div>
            
             <div class="v-mycenter-head-bottom-copy g-flex-align-center">
-              <img src="/img/icon/mine_information_copy.png" alt="" />
+              <img src="@/assets/img/mycenter_ copy.png" alt="" />
             </div>
           </div>
           <div @click.stop="copyClick(userInfo.email)" class="v-mycenter-head-bottom g-flex-space-between">
             <div class="v-mycenter-head-bottom-copy g-flex-align-center">
-              <img src="/img/icon/mine_information_copy.png" alt="" />
+              <img src="@/assets/img/mycenter_ email.png" alt="" />
               <div class="v-mycenter-head-bottom-id">
                 {{ userInfo.email }}
               </div>
             </div>
            
             <div class="v-mycenter-head-bottom-copy g-flex-align-center">
-              <img src="/img/icon/mine_information_copy.png" alt="" />
+              <img src="@/assets/img/mycenter_ copy.png" alt="" />
             </div>
           </div>
           
@@ -693,7 +696,7 @@ let selectLangObj = computed(() => {
 
           img.v-mycenter-head-right-level {
             width: auto;
-            height: 20px;
+            height: 30px;
             display: inline-block;
             margin-bottom: 5px;
           }
