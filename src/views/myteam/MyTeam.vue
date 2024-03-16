@@ -1,23 +1,17 @@
 <template>
-  <div class="v_my_team g-flex-column ">
-    <div class="public_header">
-      <div>
-        <div @click="$router.go(-1)" class="v-head-back-icon g-flex-align-center">
-          <i class="iconfont icon-zuo"></i>
-        </div>
-        <div class="g-flex-align-center g-flex-justify-center public_headerContent">
-          <img src="/img/icon/icon_vip.png" alt="logo" class="public_headerLogo">
-          <span class="public_headerTitle">{{ i18n.titleText }}</span>
-        </div>
-      </div>
-  
-      <!--
-       -->
-      <!-- <div class="v-head-right g-flex-align-center">
-      <i class="iconfont icon-datijilu"></i>
-    </div> -->
+  <div class="v_my_team g-flex-column tost-container ">
+    <div class="t-head">
+      <!-- <img :src="left" @click="$router.go(-1)" alt=""> -->
+      <span></span>
+      <img :src="topImg" alt="" class="header_topImg">
+      <span></span>
     </div>
-    <div class="v-my-team-container public_bgColor">
+    <div class="head-title">
+      <span>{{ i18n.titleText }}</span>
+    </div>
+
+
+    <div class="v-my-team-container">
       <div class="v-my-team-card-one public_border2Black">
         <div class="v-my-team-card-title g-flex-align-center g-flex-justify-between">
           <div class="v-my-team-card-title-left public_border2Black g-flex-align-center g-flex-align-center g-flex-justify-center">
@@ -38,7 +32,7 @@
             </div>
             <div class="v-my-team-card-one-middle-item-val">
               <span>{{ topTotalInfo.obj.agentNums }}</span>
-              <img src="/img/icon/user_icon_tips.png" alt="money">
+              <img :src="registeredMember" alt="money">
             </div>
           </div>
           <div class="v-my-team-card-one-middle-item g-flex-column g-flex-align-center">
@@ -47,7 +41,7 @@
             </div>
             <div class="v-my-team-card-one-middle-item-val">
               <span>{{ topTotalInfo.obj.agentValidNums }}</span>
-              <img src="/img/icon/user_icon_tips.png" alt="money">
+              <img :src="teamIncome" alt="money">
             </div>
           </div>
           <div class="v-my-team-card-one-middle-item g-flex-column g-flex-align-center">
@@ -56,7 +50,7 @@
             </div>
             <div class="v-my-team-card-one-middle-item-val">
               <span>{{ topTotalInfo.obj.totalAmount }}</span>
-              <img src="/img/icon/user_icon_tips.png" alt="money">
+              <img :src="validMembers" alt="money">
             </div>
           </div>
         </div>
@@ -107,7 +101,7 @@
 
             <div class="v-my-team-card-two-middle-item-val">
               <span>{{ bottomTotalInfo.obj.agent1 }}</span>
-              <img src="/img/icon/user_icon_tips.png" alt="money">
+              <img :src="registeredMember" alt="money">
             </div>
 
           </div>
@@ -118,7 +112,7 @@
             </div>
             <div class="v-my-team-card-two-middle-item-val">
               <span>{{ bottomTotalInfo.obj.agentValid1 }}</span>
-              <img src="/img/icon/user_icon_tips.png" alt="money">
+              <img :src="teamIncome" alt="money">
             </div>
           </div>
           <div class="v-my-team-card-two-middle-item g-flex-column g-flex-align-center">
@@ -128,7 +122,7 @@
             </div>
             <div class="v-my-team-card-two-middle-item-val">
               <span>{{ bottomTotalInfo.obj.agentAmount1 }}</span>
-              <img src="/img/icon/user_icon_tips.png" alt="money">
+              <img :src="validMembers" alt="money">
             </div>
           </div>
         </div>
@@ -153,7 +147,7 @@
 
             <div class="v-my-team-card-two-middle-item-val">
               <span>{{ bottomTotalInfo.obj.agent2 }}</span>
-              <img src="/img/icon/user_icon_tips.png" alt="money">
+              <img :src="registeredMember" alt="money">
             </div>
 
           </div>
@@ -165,7 +159,7 @@
 
             <div class="v-my-team-card-two-middle-item-val">
               <span>{{ bottomTotalInfo.obj.agentValid2 }}</span>
-              <img src="/img/icon/user_icon_tips.png" alt="money">
+              <img :src="teamIncome" alt="money">
             </div>
 
           </div>
@@ -177,7 +171,7 @@
 
             <div class="v-my-team-card-two-middle-item-val">
               <span>{{ bottomTotalInfo.obj.agentAmount2 }}</span>
-              <img src="/img/icon/user_icon_tips.png" alt="money">
+              <img :src="validMembers" alt="money">
             </div>
           </div>
         </div>
@@ -203,7 +197,7 @@
 
             <div class="v-my-team-card-two-middle-item-val">
               <span>{{ bottomTotalInfo.obj.agent3 }}</span>
-              <img src="/img/icon/user_icon_tips.png" alt="money">
+              <img :src="registeredMember" alt="money">
             </div>
 
           </div>
@@ -215,7 +209,7 @@
 
             <div class="v-my-team-card-two-middle-item-val">
               <span>{{ bottomTotalInfo.obj.agentValid3 }}</span>
-              <img src="/img/icon/user_icon_tips.png" alt="money">
+              <img :src="teamIncome" alt="money">
             </div>
           </div>
           <div class="v-my-team-card-two-middle-item g-flex-column g-flex-align-center">
@@ -226,7 +220,7 @@
 
             <div class="v-my-team-card-two-middle-item-val">
               <span>{{ bottomTotalInfo.obj.agentAmount3 }}</span>
-              <img src="/img/icon/user_icon_tips.png" alt="money">
+              <img :src="validMembers" alt="money">
             </div>
           </div>
         </div>
@@ -245,6 +239,14 @@
 </template>
 
 <script setup>
+
+import topImg from '@/assets/img/topimg.png'
+
+import registeredMember from '@/assets/img/team_registeredMember.png'
+import teamIncome from '@/assets/img/team_teamIncome.png'
+import validMembers from '@/assets/img/team_validMembers.png'
+
+
 import SelectRadioPop from '@/components/SelectRadioPop.vue'
 import { apiGetUserInfo, apiNewTeamGetTeamInfo, apiNewTeamGetThreeLayerInfo } from '@/utils/api.js'
 import { dotDealWith, formatDate, copyClick, upDownClass, upDownBgClass, filtersZhangfu, kefuClick, upDownBgFontColorClass } from "@/utils/index.js";
@@ -405,11 +407,16 @@ async function apiGetUserInfoHandel() {
 </script>
 
 <style lang='scss'>
+
+@import "@/styles/withdrawal";
+
 .v_my_team {
   height: 100%;
   overflow: auto;
-  background-color: var(--g-main-bgColor);
-
+  // background-color: var(--g-main-bgColor);
+  .head-title {
+    margin-bottom: 14px;
+  }
   .v-head {
     height: 46px;
     position: fixed;
