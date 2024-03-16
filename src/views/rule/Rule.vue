@@ -1,9 +1,7 @@
 <template>
   <div class="v_rule g-flex-column">
     <div class="v-head g-flex-align-center">
-      <div @click="$router.go(-1)" class="v-head-back-icon">
-        <i class="iconfont icon-zuo"></i>
-      </div>
+      <img :src="left" @click="$router.go(-1)" alt="" class="v-head_left">
       
     </div>
 
@@ -22,6 +20,8 @@
 </template>
 
 <script setup>
+import left from '@/assets/img/aboutUs_left.png'
+
 import { apiGetNoticeInfo } from '@/utils/api.js'
 import { useRouter, useRoute } from 'vue-router';
 import { reactive, ref, computed } from 'vue';
@@ -72,10 +72,17 @@ apiGetNoticeInfoHandel()
     left: 0;
     top: 0;
     width: 100%;
-    background: url(/img/icon/quantify_top_inset.png) 50% 50% no-repeat;
+    background: url(@/assets/img/aboutUs_bg.png) 50% 50% no-repeat;
     background-size: cover;
-    padding: 20px 0px 0px;
+    padding: 12px 0px 0px;
     height: 300px;
+    .v-head_left {
+      position: absolute;
+      left: 12px;
+      top: 16px;
+      width: 10px;
+      height: 18px;
+    }
     .v-head-back-icon {
       position: absolute;
       left: 10px;
@@ -111,18 +118,19 @@ apiGetNoticeInfoHandel()
       font-size: 24px;
       font-weight: 600;
       color: #333;
-      margin-top: 200px;
+      margin-top: 250px;
       flex-direction: column;
       z-index: 100;
 
       .v-head-titleName {
         background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(36, 83, 248, 1) 100%);
+        // background-image: linear-gradient(0deg, #2453F8 0%, rgba(36, 83, 248, 0) 100%);
         display: inline-block;
         width: 100%;
-        height: 170px;
+        height: 100px;
         border-top-left-radius: 40px;
         border-top-right-radius: 40px;
-        padding-top: 30px;
+        padding-top: 20px;
       }
     }
 
@@ -133,7 +141,7 @@ apiGetNoticeInfoHandel()
     color: var(--g-black);
     font-size: 14px;
     z-index: 100;
-    margin-top: -100px;
+    margin-top: -40px;
     overflow: auto;
     max-height: 400px;
     padding-bottom: 30px;
