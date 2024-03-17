@@ -1,108 +1,158 @@
 <template>
-  <div class="v_recharge_bi g-flex-column">
-    <div class="v-head g-flex-align-center">
-      <div @click="$router.go(-1)" class="v-head-back-icon g-flex-align-center">
-        <i class="iconfont icon-zuo"></i>
-      </div>
-      <div class="v-head-title g-flex-align-center g-flex-justify-center">
-        <span>{{ i18n.titleText }}</span>
-      </div>
-      <!-- <div class="v-head-right g-flex-align-center">
-        <i class="iconfont icon-datijilu"></i>
-      </div> -->
-    </div>
-    <div class="v-recharge-bi-container">
 
-      <div class="v-recharge-bi-top">
-        <div class="v-recharge-bi-top-wangluo">
-          <p class="v-recharge-coin-title">{{ i18n.selectBiText }}</p>
-          <div class="v-recharge-bi-select-box">
-            <div class="v-recharge-bi-select g-flex-align-center" @click="selectCoinClick">
-              <div class="v-recharge-bi-select-left g-flex-align-center">
-                <span>{{ seletCoinItem.obj.currency }}</span>
-              </div>
-              <i class="iconfont icon-xiala" :style="styObjOne"></i>
-            </div>
-            <!-- 选择币 -->
-            <select-coin-pop :coinList="infoObj.info" @emitCoinItemClick="emitCoinItemClick" ref="refSelectCoinPop" />
+  <div class="tost-container">
+    <div class="t-head">
+      <img :src="left" @click="$router.go(-1)" alt="">
+      <img :src="topImg" alt="">
+      <img :src="history" alt="" @click="$router.push('/cashouthistory')">
+    </div>
+    <div class="head-title">
+      <span>{{ i18n.titleText }}</span>
+    </div>
+    <section>
+      <div class="item">
+        <h5>{{i18n.selectBiText}}</h5>
+        <div class="v-cashout-coin-two-select-box">
+          <div class="v-cashout-coin-two-select" @click="selectCoinClick">
+            <span>{{  seletCoinItem.obj.currency }}</span>
+            <i class="iconfont icon-xiala" :style="styObjOne"></i>
           </div>
-          <p class="v-recharge-coin-title">{{ i18n.linkText }}</p>
+          <!-- 选择币 -->
+          <select-coin-pop :coinList="infoObj.info" @emitCoinItemClick="emitCoinItemClick"
+                           ref="refSelectCoinPop" />
+        </div>
+      </div>
+      <div class="item">
+        <div class="show-info">
+          <p>{{i18n.linkText}}</p>
           <ul class="v-cashout-coin-link-list g-flex-align-center">
             <li @click="linkItemClick(item, index)" :class="linkIndex == index ? 'active' : ''"
-              class="v-cashout-coin-link-item" v-for="(item, index) in seletCoinItem.obj.chainList" :key="index">
-              <span>{{ item.chain }}</span>
+                class="v-cashout-coin-link-item" v-for="(item, index) in seletCoinItem.obj.chainList" :key="index">
+              <span>{{  item.chain  }}</span>
             </li>
           </ul>
         </div>
-
-
-
-        <div class="v-recharge-bi-code-box">
-          <div class="v-recharge-bi-qrcode-box g-flex-align-center g-flex-column">
-            <div class="v-recharge-bi-qrcode g-flex-align-center g-flex-justify-center">
-              <vue-qr v-if="form.info.address" ref="refVueQr" :text="form.info.address" :margin="marginVal"
-                :size="130"></vue-qr>
-            </div>
-            <div class="v-recharge-bi-qrcode-address-title">{{ i18n.saomaText }}</div>
+      </div>
+      <div class="item">
+        <div class="rechage-info">
+          <div class="left">
+            <p @click="copyClick(form.info.address)">{{ form.info.address }}</p>
+            <p>Copy the link address or scan the QR code to top up your balance</p>
           </div>
-
-
-          <div class="v-recharge-bi-qrcode-address-box g-flex-align-center">
-            <div class="v-recharge-bi-qrcode-address-val">
-              {{ form.info.address }}
-            </div>
-            <div @click="copyClick(form.info.address)" class="v-recharge-bi-copy g-flex-justify-center">
-              <i class="iconfont icon-ic_line_copy24px"></i>
-            </div>
-          </div>
-
+          <vue-qr v-if="form.info.address" ref="refVueQr" :text="form.info.address" :margin="marginVal"
+                  :size="130"></vue-qr>
         </div>
-
+      </div>
+      <div class="item tips">
+        <h5>Recharge rules</h5>
         <RechargeTips/>
       </div>
+    </section>
+  </div>
+<!--  <div class="v_recharge_bi g-flex-column">-->
+<!--    <div class="v-head g-flex-align-center">-->
+<!--      <div @click="$router.go(-1)" class="v-head-back-icon g-flex-align-center">-->
+<!--        <i class="iconfont icon-zuo"></i>-->
+<!--      </div>-->
+<!--      <div class="v-head-title g-flex-align-center g-flex-justify-center">-->
+<!--        <span>{{ i18n.titleText }}</span>-->
+<!--      </div>-->
+<!--      &lt;!&ndash; <div class="v-head-right g-flex-align-center">-->
+<!--        <i class="iconfont icon-datijilu"></i>-->
+<!--      </div> &ndash;&gt;-->
+<!--    </div>-->
+<!--    <div class="v-recharge-bi-container">-->
+
+<!--      <div class="v-recharge-bi-top">-->
+<!--        <div class="v-recharge-bi-top-wangluo">-->
+<!--          <p class="v-recharge-coin-title">{{ i18n.selectBiText }}</p>-->
+<!--          <div class="v-recharge-bi-select-box">-->
+<!--            <div class="v-recharge-bi-select g-flex-align-center" @click="selectCoinClick">-->
+<!--              <div class="v-recharge-bi-select-left g-flex-align-center">-->
+<!--                <span>{{ seletCoinItem.obj.currency }}</span>-->
+<!--              </div>-->
+<!--              <i class="iconfont icon-xiala" :style="styObjOne"></i>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; 选择币 &ndash;&gt;-->
+<!--            <select-coin-pop :coinList="infoObj.info" @emitCoinItemClick="emitCoinItemClick" ref="refSelectCoinPop" />-->
+<!--          </div>-->
+<!--          <p class="v-recharge-coin-title">{{ i18n.linkText }}</p>-->
+<!--          <ul class="v-cashout-coin-link-list g-flex-align-center">-->
+<!--            <li @click="linkItemClick(item, index)" :class="linkIndex == index ? 'active' : ''"-->
+<!--              class="v-cashout-coin-link-item" v-for="(item, index) in seletCoinItem.obj.chainList" :key="index">-->
+<!--              <span>{{ item.chain }}</span>-->
+<!--            </li>-->
+<!--          </ul>-->
+
+<!--        </div>-->
 
 
-      <div v-if="false" class="v-recharge-bi-bottom">
 
-        <div class="v-recharge-bi-nums">
-          <div class="v-recharge-bi-nums-title">
-            <span>{{ i18n.rechargeAmountText }}(USDT):</span>
-          </div>
-          <div class="v-recharge-bi-nums-input">
-            <input @input="amountChange" type="text" v-model="form.amount" :placeholder="i18n.cunkuanPlaceholderText">
-          </div>
-        </div>
-        <div v-show="seletCoinItem.obj.currency != 'USDT' && form.amount"
-          class="v-recharge-bi-yuedengyu g-flex-align-center">
-          <span>≈</span>
-          <p>{{ form.money }} </p>
-          <span>{{ seletCoinItem.obj.currency }}</span>
-        </div>
+<!--        <div class="v-recharge-bi-code-box">-->
+<!--          <div class="v-recharge-bi-qrcode-box g-flex-align-center g-flex-column">-->
+<!--            <div class="v-recharge-bi-qrcode g-flex-align-center g-flex-justify-center">-->
+<!--              <vue-qr v-if="form.info.address" ref="refVueQr" :text="form.info.address" :margin="marginVal"-->
+<!--                :size="130"></vue-qr>-->
+<!--            </div>-->
+<!--            <div class="v-recharge-bi-qrcode-address-title">{{ i18n.saomaText }}</div>-->
+<!--          </div>-->
 
-        <!-- <div class="v-recharge-bi-upload-box">
-        <p class="v-recharge-bi-upload-title">{{ i18n.uploadText }}:</p>
-        <div class="v-recharge-bi-upload g-flex-align-center g-flex-justify-center">
-          <img @click="imgPrviewClick(form.img)" v-show="form.img" :src="form.img" alt="">
-          <div v-show="form.img" class="v-real-name-delete g-flex-justify-center g-flex-align-center"
-            @click="form.img = ''">
-            <i class="iconfont icon-shanchu2"></i>
-          </div>
-          <div v-show="!form.img" @click="uploadClick"
-            class="v-recharge-bi-upload-tips g-flex-column g-flex-align-center g-flex-justify-center">
-            <i class="iconfont icon-jiahao1"></i>
-            <p>{{ i18n.selectImgText }}</p>
-          </div>
-        </div>
-      </div> -->
 
-        <div @click="apiBankFinishPayHandel" class="v-recharge-bi-btn g-flex-align-center g-flex-justify-center">
-        <span>{{ i18n.submitBtnText }}</span>
-      </div>
-      </div>
-    </div>
+<!--          <div class="v-recharge-bi-qrcode-address-box g-flex-align-center">-->
+<!--            <div class="v-recharge-bi-qrcode-address-val">-->
+<!--              {{ form.info.address }}-->
+<!--            </div>-->
+<!--            <div @click="copyClick(form.info.address)" class="v-recharge-bi-copy g-flex-justify-center">-->
+<!--              <i class="iconfont icon-ic_line_copy24px"></i>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--        </div>-->
+
+<!--      </div>-->
+
+
+<!--      <div v-if="false" class="v-recharge-bi-bottom">-->
+
+<!--        <div class="v-recharge-bi-nums">-->
+<!--          <div class="v-recharge-bi-nums-title">-->
+<!--            <span>{{ i18n.rechargeAmountText }}(USDT):</span>-->
+<!--          </div>-->
+<!--          <div class="v-recharge-bi-nums-input">-->
+<!--            <input @input="amountChange" type="text" v-model="form.amount" :placeholder="i18n.cunkuanPlaceholderText">-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div v-show="seletCoinItem.obj.currency != 'USDT' && form.amount"-->
+<!--          class="v-recharge-bi-yuedengyu g-flex-align-center">-->
+<!--          <span>≈</span>-->
+<!--          <p>{{ form.money }} </p>-->
+<!--          <span>{{ seletCoinItem.obj.currency }}</span>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; <div class="v-recharge-bi-upload-box">-->
+<!--        <p class="v-recharge-bi-upload-title">{{ i18n.uploadText }}:</p>-->
+<!--        <div class="v-recharge-bi-upload g-flex-align-center g-flex-justify-center">-->
+<!--          <img @click="imgPrviewClick(form.img)" v-show="form.img" :src="form.img" alt="">-->
+<!--          <div v-show="form.img" class="v-real-name-delete g-flex-justify-center g-flex-align-center"-->
+<!--            @click="form.img = ''">-->
+<!--            <i class="iconfont icon-shanchu2"></i>-->
+<!--          </div>-->
+<!--          <div v-show="!form.img" @click="uploadClick"-->
+<!--            class="v-recharge-bi-upload-tips g-flex-column g-flex-align-center g-flex-justify-center">-->
+<!--            <i class="iconfont icon-jiahao1"></i>-->
+<!--            <p>{{ i18n.selectImgText }}</p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div> &ndash;&gt;-->
+
+<!--        <div @click="apiBankFinishPayHandel" class="v-recharge-bi-btn g-flex-align-center g-flex-justify-center">-->
+<!--        <span>{{ i18n.submitBtnText }}</span>-->
+<!--      </div>-->
+<!--      </div>-->
+<!--    </div>-->
     <OssUpload MidrPath="/recharge/" idString="c-recharge-coin-upload-1" @emitUploadSuccess="emitUploadSuccess"
       ref="refOssUpload" />
-  </div>
+<!--  </div>-->
 </template>
 
 <script setup>
@@ -117,6 +167,9 @@ import { ImagePreview, Toast } from 'vant';
 import { reactive, ref, computed } from 'vue';
 import { useI18n } from "vue-i18n";
 import useStore from '@/store/index.js'
+import left from "@/assets/img/left.png";
+import topImg from "@/assets/img/topimg.png";
+import history from "@/assets/img/history.png";
 // pinia状态管理仓库
 const store = useStore();
 
@@ -235,6 +288,118 @@ function emitUploadSuccess(url) {
 </script>
 
 <style lang='scss'>
+@import "@/styles/index";
+
+section{
+  padding: 14px 13px 0;
+  .item {
+    margin-bottom: 21px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    h5 {
+      font-weight: bold;
+      font-size: 12px;
+      margin-left: 8px;
+      color: #000000;
+      margin-bottom: 10px;
+    }
+    .van-field {
+      background: #FFFFFF;
+      box-shadow: 2px 1px 7px 2px rgba(12, 13, 12, 0.1);
+      border-radius: 10px;
+    }
+    .v-cashout-coin-two-select-box {
+      position: relative;
+      background: #FFFFFF;
+      padding: 13px 17px;
+      box-shadow: 2px 1px 7px 2px rgba(12, 13, 12, 0.1);
+      border-radius: 10px;
+      .v-cashout-coin-two-select {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+    .show-info{
+      background: #FFFFFF;
+      box-shadow: 2px 1px 7px 2px rgba(12,13,12,0.1);
+      border-radius: 12px;
+      padding: 16px 17px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      p{
+        font-weight: bold;
+        font-size: 12px;
+        color: #000000;
+        margin-right: 15px;
+      }
+      span{
+        background: linear-gradient(90deg, #0030FE 0%, #007BFE 50%, #0030FE 100%);
+        border-radius: 6px;
+        font-weight: bold;
+        font-size: 11px;
+        color: #FFFFFF;
+        padding: 6px 8px;
+      }
+    }
+    .rechage-info{
+      display: flex;
+      background: #FFFFFF;
+      box-shadow: 2px 1px 7px 2px rgba(12,13,12,0.1);
+      border-radius: 10px;
+      padding: 11px 19px;
+      img{
+        width: 86px;
+        margin-left: 20px;
+        height: 86px;
+      }
+      .left{
+        padding: 6px 0;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: space-between;
+        p{
+          width: 210px;
+          word-break: break-word;
+          &:first-child{
+            font-weight: 400;
+            font-size: 12px;
+            color: #000000;
+            line-height: 17px;
+            text-decoration-line: underline;
+          }
+          &:last-child{
+            font-weight: bold;
+            font-size: 12px;
+            color: #000000;
+          }
+        }
+      }
+    }
+  }
+  .tips{
+    margin-top: 49px;
+    h5{
+      text-align: center;
+    }
+    .c_recharge_tips{
+      background: #FFFFFF;
+      box-shadow: 2px 1px 7px 2px rgba(12,13,12,0.1);
+      border-radius: 9px;
+      padding: 16px 14px;
+      font-weight: 400;
+      font-size: 12px;
+      color: #000000;
+    }
+  }
+}
+
+
+
+
 .v_recharge_bi {
   height: 100%;
   overflow: auto;

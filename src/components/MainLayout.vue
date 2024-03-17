@@ -15,7 +15,9 @@ import FooterLayout from "./FooterLayout.vue";
   height: 100%;
 
   &.v-is-main {
-    padding-bottom: 50px;
+    //padding-bottom: 50px;
+    //height: 126vh;
+    //padding-bottom: 22.333333vw;
   }
 
   .v-main-container {

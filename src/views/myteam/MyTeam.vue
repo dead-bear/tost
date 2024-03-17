@@ -41,7 +41,7 @@
             </div>
             <div class="v-my-team-card-one-middle-item-val">
               <span>{{ topTotalInfo.obj.agentValidNums }}</span>
-              <img :src="teamIncome" alt="money">
+              <img :src="validMembers" alt="money">
             </div>
           </div>
           <div class="v-my-team-card-one-middle-item g-flex-column g-flex-align-center">
@@ -50,7 +50,7 @@
             </div>
             <div class="v-my-team-card-one-middle-item-val">
               <span>{{ topTotalInfo.obj.totalAmount }}</span>
-              <img :src="validMembers" alt="money">
+              <img :src="teamIncome" alt="money">
             </div>
           </div>
         </div>
@@ -85,7 +85,7 @@
         </div>
         <div class="v-my-team-card-two-middle-list g-flex-align-center">
           <div class="v-my-team-card-two-middle-item g-flex-column g-flex-align-center">
-           
+
             <div class="v-my-team-card-two-middle-item-title">
               <span>{{ i18n.tuanduiYongJinText }}</span>
             </div>
@@ -94,7 +94,7 @@
             </div>
           </div>
           <div class="v-my-team-card-two-middle-item g-flex-column g-flex-align-center">
-           
+
             <div class="v-my-team-card-two-middle-item-title">
               <span>{{ i18n.zhuceHuiYuanText }}</span>
             </div>
@@ -106,23 +106,23 @@
 
           </div>
           <div class="v-my-team-card-two-middle-item g-flex-column g-flex-align-center">
-            
+
             <div class="v-my-team-card-two-middle-item-title">
               <span>{{ i18n.youxiaoHuiYuanText }}</span>
             </div>
             <div class="v-my-team-card-two-middle-item-val">
               <span>{{ bottomTotalInfo.obj.agentValid1 }}</span>
-              <img :src="teamIncome" alt="money">
+              <img :src="validMembers" alt="money">
             </div>
           </div>
           <div class="v-my-team-card-two-middle-item g-flex-column g-flex-align-center">
-           
+
             <div class="v-my-team-card-two-middle-item-title">
               <span>{{ i18n.tuanduiShouRuText }}</span>
             </div>
             <div class="v-my-team-card-two-middle-item-val">
               <span>{{ bottomTotalInfo.obj.agentAmount1 }}</span>
-              <img :src="validMembers" alt="money">
+              <img :src="teamIncome" alt="money">
             </div>
           </div>
         </div>
@@ -131,7 +131,7 @@
         </div>
         <div class="v-my-team-card-two-middle-list g-flex-align-center">
           <div class="v-my-team-card-two-middle-item g-flex-column g-flex-align-center">
-           
+
             <div class="v-my-team-card-two-middle-item-title ">
               <span>{{ i18n.tuanduiYongJinText }}</span>
             </div>
@@ -140,7 +140,7 @@
             </div>
           </div>
           <div class="v-my-team-card-two-middle-item g-flex-column g-flex-align-center">
-           
+
             <div class="v-my-team-card-two-middle-item-title">
               <span>{{ i18n.zhuceHuiYuanText }}</span>
             </div>
@@ -152,26 +152,26 @@
 
           </div>
           <div class="v-my-team-card-two-middle-item g-flex-column g-flex-align-center">
-           
+
             <div class="v-my-team-card-two-middle-item-title">
               <span>{{ i18n.youxiaoHuiYuanText }}</span>
             </div>
 
             <div class="v-my-team-card-two-middle-item-val">
               <span>{{ bottomTotalInfo.obj.agentValid2 }}</span>
-              <img :src="teamIncome" alt="money">
+              <img :src="validMembers" alt="money">
             </div>
 
           </div>
           <div class="v-my-team-card-two-middle-item g-flex-column g-flex-align-center">
-           
+
             <div class="v-my-team-card-two-middle-item-title">
               <span>{{ i18n.tuanduiShouRuText }}</span>
             </div>
 
             <div class="v-my-team-card-two-middle-item-val">
               <span>{{ bottomTotalInfo.obj.agentAmount2 }}</span>
-              <img :src="validMembers" alt="money">
+              <img :src="teamIncome" alt="money">
             </div>
           </div>
         </div>
@@ -181,7 +181,7 @@
         </div>
         <div class="v-my-team-card-two-middle-list g-flex-align-center">
           <div class="v-my-team-card-two-middle-item g-flex-column g-flex-align-center">
-           
+
             <div class="v-my-team-card-two-middle-item-title ">
               <span>{{ i18n.tuanduiYongJinText }}</span>
             </div>
@@ -202,25 +202,25 @@
 
           </div>
           <div class="v-my-team-card-two-middle-item g-flex-column g-flex-align-center">
-           
+
             <div class="v-my-team-card-two-middle-item-title">
               <span>{{ i18n.youxiaoHuiYuanText }}</span>
             </div>
 
             <div class="v-my-team-card-two-middle-item-val">
               <span>{{ bottomTotalInfo.obj.agentValid3 }}</span>
-              <img :src="teamIncome" alt="money">
+              <img :src="validMembers" alt="money">
             </div>
           </div>
           <div class="v-my-team-card-two-middle-item g-flex-column g-flex-align-center">
-           
+
             <div class="v-my-team-card-two-middle-item-title">
               <span>{{ i18n.tuanduiShouRuText }}</span>
             </div>
 
             <div class="v-my-team-card-two-middle-item-val">
               <span>{{ bottomTotalInfo.obj.agentAmount3 }}</span>
-              <img :src="validMembers" alt="money">
+              <img :src="teamIncome" alt="money">
             </div>
           </div>
         </div>
@@ -408,7 +408,7 @@ async function apiGetUserInfoHandel() {
 
 <style lang='scss'>
 
-@import "@/styles/withdrawal";
+@import "@/styles/index";
 
 .v_my_team {
   height: 100%;
@@ -472,7 +472,7 @@ async function apiGetUserInfoHandel() {
     overflow: auto;
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 30px;
+    padding-bottom: 90px;
     z-index: 100;
 
     .v-my-team-card-one {
@@ -483,21 +483,21 @@ async function apiGetUserInfoHandel() {
 
       .v-my-team-card-title {
         .v-my-team-card-title-left {
-          font-size: 12px;
+          font-size: 8px;
           color: #000;
           font-weight: 700;
           width: 50%;
-          border-radius: 20px;
+          border-radius: 8px;
           text-align: center;
-          height: 26px;
+          height: 17px;
         }
 
         .v-my-team-card-title-right {
           padding: 4px 10px;
-          width: 100px;
-          height: 26px;
+          width: 66px;
+          height: 17px;
           border-radius: 20px;
-          font-size: 12px;
+          font-size: 8px;
           color: #000;
           font-weight: 700;
           overflow: hidden;
@@ -519,7 +519,7 @@ async function apiGetUserInfoHandel() {
         gap: 5px;
         padding-top: 15px;
         padding-bottom: 15px;
-        border-bottom: 1px solid #E7E7E7;
+        //border-bottom: 1px solid #E7E7E7;
 
         .v-my-team-card-one-middle-item {
           width: calc(100% / 3);
@@ -546,7 +546,7 @@ async function apiGetUserInfoHandel() {
 
           .v-my-team-card-one-middle-item-title {
             color: #000;
-            font-size: 14px;
+            font-size: 13px;
             text-align: center;
             width: 100%;
             padding: 0 15px;
@@ -560,7 +560,7 @@ async function apiGetUserInfoHandel() {
 
           .v-my-team-card-one-middle-item-val {
             font-size: 24px;
-            padding-top: 15px;
+            padding-top: 10px;
             color: #000;
             font-weight: 700;
             display: flex;
@@ -578,9 +578,9 @@ async function apiGetUserInfoHandel() {
         padding-top: 15px;
 
         .v-my-team-card-one-bottom-left {
-          font-size: 15px;
-          color: #000;
           font-weight: bold;
+          font-size: 15px;
+          color: #000000;
 
           .v-my-team-card-one-bottom-left-val {
             color: #000;
@@ -610,10 +610,10 @@ async function apiGetUserInfoHandel() {
 
         .v-my-team-card-title-right {
           padding: 4px 10px;
-          width: 100px;
-          height: 26px;
+          width: 66px;
+          height: 17px;
           border-radius: 20px;
-          font-size: 12px;
+          font-size: 8px;
           color: #000;
           font-weight: 700;
           overflow: hidden;
@@ -633,12 +633,12 @@ async function apiGetUserInfoHandel() {
 
       .v-my-team-card-two-second-title {
         color: var(--g-white);
-        font-size: 22px;
         font-weight: 700;
-        padding: 10px;
+        padding: 7px;
         background-image: linear-gradient(to right , #2453F8, #fff);
         border-radius: 10px;
         margin-top: 20px;
+        font-size: 18px;
       }
 
       .v-my-team-card-two-middle-list {
@@ -673,7 +673,7 @@ async function apiGetUserInfoHandel() {
           }
 
           .v-my-team-card-two-middle-item-title {
-            
+
             height: 36px;
             font-size: 14px;
             line-height: 18px;
@@ -690,9 +690,9 @@ async function apiGetUserInfoHandel() {
               @include textEllipsis(2);
             }
 
-            
 
-            
+
+
           }
         }
       }

@@ -3,7 +3,7 @@
     <div class="t-head">
       <img :src="left" @click="$router.go(-1)" alt="">
       <img :src="topImg" alt="">
-      <img :src="history" alt="">
+      <img :src="history" alt="" @click="$router.push('/cashouthistory')">
     </div>
     <div class="head-title">
       <span>{{ i18n.titleText }}</span>
@@ -380,7 +380,7 @@ const shouxuFei = computed(() => {
 </script>
 
 <style lang='scss'>
-@import "@/styles/withdrawal";
+@import "@/styles/index";
 .v-cashout-coin-link-list{
   span{
     border-radius: 6px;
@@ -390,6 +390,97 @@ const shouxuFei = computed(() => {
     font-weight: bold;
     margin-left: 8px;
     background: linear-gradient(90deg, #0030FE 0%, #007BFE 50%, #0030FE 100%);
+  }
+}
+section {
+  padding: 0 13px;
+  .balance-box {
+    background: #FFFFFF;
+    padding: 12px;
+    margin-top: 14px;
+    box-shadow: 2px 1px 7px 2px rgba(12, 13, 12, 0.1);
+    border-radius: 12px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    h1 {
+      padding: 17px;
+      color: #FFFFFF;
+      font-weight: bold;
+      font-size: 24px;
+      background: linear-gradient(90deg, #0030FE 0%, #007BFE 50%, #0030FE 100%);
+      border-radius: 9px;
+      margin-right: 13px;
+    }
+    p {
+      font-weight: bold;
+      font-size: 12px;
+      color: #000000;
+      &:first-child {
+        margin-bottom: 12px;
+      }
+      span {
+        font-weight: bold;
+        font-size: 17px;
+        color: #0030FE;
+      }
+    }
+  }
+  .item {
+    margin-bottom: 21px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    h5 {
+      font-weight: bold;
+      font-size: 12px;
+      margin-left: 8px;
+      color: #000000;
+      margin-bottom: 10px;
+    }
+    .van-field {
+      background: #FFFFFF;
+      box-shadow: 2px 1px 7px 2px rgba(12, 13, 12, 0.1);
+      border-radius: 10px;
+    }
+    .v-cashout-coin-two-select-box {
+      position: relative;
+      background: #FFFFFF;
+      padding: 13px 17px;
+      box-shadow: 2px 1px 7px 2px rgba(12, 13, 12, 0.1);
+      border-radius: 10px;
+      .v-cashout-coin-two-select {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+  .v-cashout-coin-bottom-canuse {
+    font-weight: bold;
+    margin: 0 0 8px 8px;
+    font-size: 12px;
+    color: #A2A2A2;
+    line-height: 13px;
+    //margin-bottom: 8px;
+    span {
+      font-weight: bold;
+      font-size: 12px;
+      color: #000000;
+      margin-left: 18px;
+    }
+  }
+  .v-cashout-coin-btn {
+    margin-top: 18px;
+    span {
+      padding: 12px 13px 9px 15px;
+      background: #FFFFFF;
+      box-shadow: 2px 1px 7px 2px rgba(12, 13, 12, 0.1);
+      border-radius: 9px;
+      font-weight: bold;
+      font-size: 12px;
+      color: #000000;
+    }
   }
 }
 </style>

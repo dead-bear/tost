@@ -351,7 +351,7 @@ defineExpose({
 
             .c-pop-item-right-val {
               padding-left: 5px;
-             
+
             }
 
             .c-pop-item-right-address {
@@ -359,7 +359,7 @@ defineExpose({
               word-break: break-all;
             }
 
-            
+
             .c-pop-item-right-copy-text {
               color: var(--g-main_color);
               font-size: 14px;

@@ -10,82 +10,85 @@ const router = createRouter({
       component: MainLayout,
       redirect: '/main',
       children: [
+        // 任务中心
+        { path: '/taskcenter', name: 'taskcenter', component: () => import('@/views/taskcenter/TaskCenter.vue'), meta: { index: 40, name: '任务中心' } },
         { path: '/main', name: 'main', component: () => import(/* webpackChunkName: "main" */'@/views/mainview/MainView.vue'), meta: { index: 0, name: '首页' } },
         { path: '/quantify', name: 'quantify', component: () => import(/* webpackChunkName: "main" */'@/views/lianghua/LiangHua.vue'), meta: { index: 0, name: '量化' } },
         { path: '/myteam', name: 'myteam', component: () => import(/* webpackChunkName: "main" */'@/views/myteam/MyTeam.vue'), meta: { index: 0, name: '我的团队' } },
+        { path: '/team', name: 'team', component: () => import(/* webpackChunkName: "main" */'@/views/myteam/team.vue'), meta: { index: 0, name: '团队' } },
         { path: '/wakuang', name: 'wakuang', component: () => import('@/views/wakuang/WaKuang.vue'), meta: { index: 0, name: '质押挖矿' } },
         { path: '/mycenter', name: 'mycenter', component: () => import(/* webpackChunkName: "main" */'@/views/mycenter/MyCenter.vue'), meta: { index: 0, name: '我的' } },
       ]
     },
-    
+
     { path: '/myteammemberlist', name: 'myteammemberlist', component: () => import('@/views/myteammemberlist/MyTeamMemberList.vue'), meta: { index: 50, name: '团队成员列表' } },
 
     { path: '/rechargeselect', name: 'rechargeselect', component: () => import('@/views/rechargeselect/RechargeSelect.vue'), meta: { index: 50, name: '选择充值' } },
 
     { path: '/intro', name: 'intro', component: () => import(/* webpackChunkName: "main" */'@/views/intro/Intro.vue'), meta: { index: 30, name: '介绍' } },
-    
+
     { path: '/kefu', name: 'kefu', component: () => import(/* webpackChunkName: "main" */'@/views/kefu/KeFu.vue'), meta: { index: 20, name: '客服' } },
 
     { path: '/login', name: 'login', component: () => import('@/views/login/Login.vue'), meta: { index: 1, name: '登录' } },
-   
+
     { path: '/register', name: 'register', component: () => import('@/views/register/Register.vue'), meta: { index: 2, name: '注册' } },
-    
+
     { path: '/forgetpwd', name: 'forgetpwd', component: () => import('@/views/forgetpwd/ForgetPwd.vue'), meta: { index: 20, name: '忘记密码' } },
-   
+
     { path: '/invite', name: 'invite', component: () => import('@/views/invite/Invite.vue'), meta: { index: 20, name: '邀请好友' } },
-   
+
     {
       path: '/msgcenter',
-      name: 'msgcenter', 
+      name: 'msgcenter',
       component: () => import( '@/views/msgcenter/MsgCenter.vue'),
       meta: { index: 10 }
     },
     {
       path: '/userreal',
-      name: 'userreal', 
+      name: 'userreal',
       component: () => import( '@/views/userreal/UserReal.vue'),
       meta: { index: 40 }
     },
     {
       path: '/walletlist',
-      name: 'walletlist', 
+      name: 'walletlist',
       component: () => import( '@/views/walletlist/WalletList.vue'),
       meta: { index: 5 }
     },
 
     {
       path: '/walletadd',
-      name: 'walletadd', 
+      name: 'walletadd',
       component: () => import( '@/views/walletadd/WalletAdd.vue'),
       meta: { index: 40 }
     },
 
     {
       path: '/rule',
-      name: 'rule', 
+      name: 'rule',
       component: () => import( '@/views/rule/Rule.vue'),
       meta: { index: 30 }
     },
     {
       path: '/safecenter',
-      name: 'safecenter', 
+      name: 'safecenter',
       component: () => import( '@/views/safecenter/SafeCenter.vue'),
       meta: { index: 6 }
     },
     // 关于我们
     {
       path: '/aboutus',
-      name: 'aboutus', 
+      name: 'aboutus',
       component: () => import( '@/views/aboutus/AboutUs.vue'),
       meta: { index: 20 }
     },
-    
+
     // 语言设置
     { path: '/languageset', name: 'languageset', component: () => import('@/views/languageset/LanguageSet.vue'), meta: { index: 6, name: '语言设置' } },
 
     // 修改登录密码
     { path: '/changepwd', name: 'changepwd', component: () => import('@/views/changepwd/ChangePwd.vue'), meta: { index: 11, name: '修改登录密码' } },
-    
+
     // 修改交易密码
     { path: '/changebuspwd', name: 'changebuspwd', component: () => import('@/views/changebuspwd/ChangeBusPwd.vue'), meta: { index: 10, name: '修改交易密码' } },
      // 绑定手机
@@ -93,7 +96,7 @@ const router = createRouter({
     // 绑定邮箱
     { path: '/bindemail', name: 'bindemail', component: () => import('@/views/bindemail/BindEmail.vue'), meta: { index: 9, name: '绑定邮箱' } },
 
-   
+
     // 平台币充值
     {
       path: '/rechargebi/:id',
@@ -132,7 +135,7 @@ const router = createRouter({
 
     // 选择提现方式
     { path: '/cashoutselect', name: 'cashoutselect', component: () => import('@/views/cashoutselect/CashoutSelect.vue'), meta: { index: 15, name: '选择提现' } },
-  
+
     // 提现到用户钱包
     {
       path: '/cashoutbi/:id',
@@ -150,10 +153,10 @@ const router = createRouter({
     },
     // 公告详情
     { path: '/noticedetail', name: 'noticedetail', component: () => import('@/views/noticedetail/NoticeDetail.vue'), meta: { index: 11, name: '公告详情' } },
-   
+
    // 消息详情
    { path: '/msgdetail', name: 'msgdetail', component: () => import('@/views/msgdetail/MsgDetail.vue'), meta: { index: 11, name: '消息详情' } },
-    
+
     // 明细
     { path: '/mybill', name: 'mybill', component: () => import('@/views/mybill/MyBill.vue'), meta: { index: 24, name: '明细' } },
     // 量化记录
@@ -161,7 +164,7 @@ const router = createRouter({
 
     // 提现记录
     { path: '/cashouthistory', name: 'cashouthistory', component: () => import('@/views/cashouthistory/CashoutHistory.vue'), meta: { index: 24, name: '提现记录' } },
-    
+
     // 充值记录
     { path: '/rechargehistory', name: 'rechargehistory', component: () => import('@/views/rechargehistory/RechargeHistory.vue'), meta: { index: 24, name: '充值记录' } },
 
@@ -171,8 +174,6 @@ const router = createRouter({
     // 添加银行卡
     { path: '/addbankcard', name: 'addbankcard', component: () => import('@/views/addbankcard/AddBankCard.vue'), meta: { index: 40, name: '添加银行卡' } },
 
-    // 任务中心
-    { path: '/taskcenter', name: 'taskcenter', component: () => import('@/views/taskcenter/TaskCenter.vue'), meta: { index: 40, name: '任务中心' } },
     // 锁仓 挖矿 产品详情
     {
       path: '/wakuangdetail',
@@ -190,7 +191,7 @@ const router = createRouter({
     },
     {
       path: '/refresh',
-      name: 'refresh', 
+      name: 'refresh',
       component: () => import( '@/views/refresh/Refresh.vue'),
       meta: { index: 24 }
     },

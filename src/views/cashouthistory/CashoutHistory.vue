@@ -1,20 +1,17 @@
 <template>
-  <div class="v_cashout_history g-flex-column">
-    <div class="v-head g-flex-align-center">
-      <div @click="$router.go(-1)" class="v-head-back-icon g-flex-align-center">
-        <i class="iconfont icon-zuo"></i>
-      </div>
-      <div class="v-head-title g-flex-align-center g-flex-justify-center">
-        <span>{{ i18n.titleText }}</span>
-      </div>
-      <!-- <div class="v-head-right g-flex-align-center">
-        <i class="iconfont icon-datijilu"></i>
-      </div> -->
+  <div class="tost-container">
+    <div class="t-head">
+      <img :src="left" @click="$router.go(-1)" alt="">
+      <img :src="topImg" alt="">
+      <div></div>
     </div>
-    <div class="v-history-container g-flex-column">
+    <div class="head-title">
+      <span>{{ i18n.titleText }}</span>
+    </div>
+    <section>
       <van-tabs line-height="2px" color="#644FDC" title-inactive-color="#000" title-active-color="#644FDC"
-          background="var(--g-main-bgColor)" class="v-history-nav-list g-flex-align-center" @change="headNavItemClick"
-        :ellipsis="false" v-model:active="form.status">
+                background="var(--g-main-bgColor)" class="v-licai-head g-flex-align-center" @change="headNavItemClick"
+                :ellipsis="false" v-model:active="form.status">
         <van-tab title-class="v-history-nav-list-item-title" :name="''" :title="i18n.statusAllText">
         </van-tab>
         <van-tab title-class="v-history-nav-list-item-title" :name="2" :title="i18n.statusIngText">
@@ -24,66 +21,130 @@
         <van-tab title-class="v-history-nav-list-item-title" :name="0" :title="i18n.statusFailText">
         </van-tab>
       </van-tabs>
-      <div class="v-finance-list-box">
-        <!-- <van-pull-refresh v-show="list.list.length" v-model="isLoading" :success-text="i18n.refreshSuccessText" @refresh="onRefresh"> -->
-        <van-list v-show="list.list.length" class="v-list" v-model:loading="loading" :finished="finished"
-          :loading-text="i18n2.loadingText" :finished-text="i18n2.finishText" @load="onLoad"
-          :immediate-check="false">
-          <div @click="orderItemClick(item)" v-for="(item, index) in list.list" :key="index" class="v-list-item">
-            <div class="v-item-top g-flex-justify-between g-flex-align-center">
-              <div class="v-item-top-title">
-                {{ item.title }}
-              </div>
-              <div class="v-item-top-status g-flex-align-center">
-                <span :class="filtersRealStatusClass(item.status)">{{ filtersRealStatus(item.status ) }}</span>
-                <i class="iconfont icon-you"></i>
-              </div>
-            </div>
-            <div class="v-item-bottom-list g-flex-align-center">
-              <div class="v-bottom-list-item">
-                <div class="v-bottom-list-item-title">
-                  {{ i18n.cashoutBiZhongText }}
-                </div>
-          
-                <div class="v-bottom-list-item-val">
-                  {{ item.currency }}
-                </div>
-              </div>
+      <div class="v-my-bill-container">
+        <div class="v-finance-list-box" style="height: 100%">
+          <!-- <van-pull-refresh v-show="list.list.length" v-model="isLoading" :success-text="i18n.refreshSuccessText" @refresh="onRefresh"> -->
+          <van-list v-show="list.list.length" class="v-list" v-model:loading="loading" :finished="finished"
+                    :loading-text="i18n2.loadingText" :finished-text="i18n2.finishText" @load="onLoad"
+                    :immediate-check="false">
+            <!--          <div @click="orderItemClick(item)" v-for="(item, index) in list.list" :key="index" class="v-list-item">-->
+            <!--            <div class="v-item-top g-flex-justify-between g-flex-align-center">-->
+            <!--              <div class="v-item-top-title">-->
+            <!--                {{ item.title }}-->
+            <!--              </div>-->
+            <!--              <div class="v-item-top-status g-flex-align-center">-->
+            <!--                <span :class="filtersRealStatusClass(item.status)">{{ filtersRealStatus(item.status ) }}</span>-->
+            <!--                <i class="iconfont icon-you"></i>-->
+            <!--              </div>-->
+            <!--            </div>-->
+            <!--            <div class="v-item-bottom-list g-flex-align-center">-->
+            <!--              <div class="v-bottom-list-item">-->
+            <!--                <div class="v-bottom-list-item-title">-->
+            <!--                  {{ i18n.cashoutBiZhongText }}-->
+            <!--                </div>-->
 
-              <div class="v-bottom-list-item">
-                <div class="v-bottom-list-item-title">
-                  {{ i18n.moneyText }}
-                </div>
-                <div class="v-bottom-list-item-val" v-show="store.system.WithdrawModel == 1">
-                  {{ item.amount }}
-                </div>
-                <div class="v-bottom-list-item-val" v-show="store.system.WithdrawModel == 2">
-                  {{ item.apply_amount }}
-                </div>
+            <!--                <div class="v-bottom-list-item-val">-->
+            <!--                  {{ item.currency }}-->
+            <!--                </div>-->
+            <!--              </div>-->
+
+            <!--              <div class="v-bottom-list-item">-->
+            <!--                <div class="v-bottom-list-item-title">-->
+            <!--                  {{ i18n.moneyText }}-->
+            <!--                </div>-->
+            <!--                <div class="v-bottom-list-item-val" v-show="store.system.WithdrawModel == 1">-->
+            <!--                  {{ item.amount }}-->
+            <!--                </div>-->
+            <!--                <div class="v-bottom-list-item-val" v-show="store.system.WithdrawModel == 2">-->
+            <!--                  {{ item.apply_amount }}-->
+            <!--                </div>-->
+            <!--              </div>-->
+
+            <!--              <div class="v-bottom-list-item g-flex-column g-flex-align-end">-->
+            <!--                <div class="v-bottom-list-item-title">-->
+            <!--                  {{ i18n.timeText }}-->
+            <!--                </div>-->
+            <!--                <div class="v-bottom-list-item-val">-->
+            <!--                  {{ formatDate(item.create_time, 'MM/DD HH:mm') }}-->
+            <!--                </div>-->
+            <!--              </div>-->
+            <!--            </div>-->
+
+            <!--            <div class="v-item-bottom-fail" v-if="item.status == 0 && item.reason">-->
+            <!--              {{ i18n.failRemarkText }}: {{ item.reason }}-->
+            <!--            </div>-->
+
+            <!--            <div @click.stop="cehuiClick(item)" v-show="item.status == 2" class="v-item-bottom-btn g-flex-align-center g-flex-justify-center">-->
+            <!--              <span>{{ i18n2.cehuitikuanText }}</span>-->
+            <!--            </div>-->
+            <!--          </div>-->
+            <div @click="orderItemClick(item)" v-for="(item, index) in list.list" :key="index" class="v-list-item">
+              <div class="left">
+                <p>{{ item.title }}</p>
+                <p>{{ i18nc.shouxuFeiText }}: {{item.fee}}</p>
+                <p>{{navTypeVal == 1 ? i18nc.cunkuanNumText:i18nc.qukuanNumText}}: {{item.amount || item.apply_amount}}</p>
+                <p>{{navTypeVal == 1 ? i18nc.rechargeAddressText:i18nc.cashoutAddressText}}: <br/><span>{{item.info.address}}</span></p>
+                <p v-if="item.status == 0 && item.reason" style="color: #C23030;">{{i18nc.shibaiyuanyingText}}: <br/><span>{{item.reason}}</span></p>
+                <p>{{ formatDate(item.create_time, 'MM/DD HH:mm') }}</p>
               </div>
-
-              <div class="v-bottom-list-item g-flex-column g-flex-align-end">
-                <div class="v-bottom-list-item-title">
-                  {{ i18n.timeText }}
-                </div>
-                <div class="v-bottom-list-item-val">
-                  {{ formatDate(item.create_time, 'MM/DD HH:mm') }}
-                </div>
+              <div class="right">
+                <p>{{item.amount || item.apply_amount}}</p>
+                <p><span :class="filtersRealStatusClass(item.status)" />{{ filtersRealStatus(item.status ) }}</p>
               </div>
-            </div>
+              <!--                <div class="v-item-top g-flex-justify-between g-flex-align-center">-->
+              <!--                  <div class="v-item-top-title">-->
+              <!--                    {{ item.title }}-->
+              <!--                  </div>-->
+              <!--                  <div class="v-item-top-status g-flex-align-center">-->
+              <!--                    <span :class="filtersRealStatusClass(item.status)">{{ filtersRealStatus(item.status ) }}</span>-->
+              <!--                    <i class="iconfont icon-you"></i>-->
+              <!--                  </div>-->
+              <!--                </div>-->
+              <!--                <div class="v-item-bottom-list g-flex-align-center">-->
+              <!--                  <div class="v-bottom-list-item">-->
+              <!--                    <div class="v-bottom-list-item-title" v-show="navTypeVal == 1">-->
+              <!--                      {{ i18n3.rechargeBiZhongText }}-->
+              <!--                    </div>-->
+              <!--                    <div class="v-bottom-list-item-title" v-show="navTypeVal == 2">-->
+              <!--                      {{ i18n3.tixianBiZhongText }}-->
+              <!--                    </div>-->
+              <!--                    <div class="v-bottom-list-item-val">-->
+              <!--                      {{ item.currency }}-->
+              <!--                    </div>-->
+              <!--                  </div>-->
 
-            <div class="v-item-bottom-fail" v-if="item.status == 0 && item.reason">
-              {{ i18n.failRemarkText }}: {{ item.reason }}
-            </div>
+              <!--                  <div class="v-bottom-list-item">-->
+              <!--                    <div class="v-bottom-list-item-title">-->
+              <!--                      {{ i18n3.moneyText }}-->
+              <!--                    </div>-->
+              <!--                    <div class="v-bottom-list-item-val">-->
+              <!--                      {{ item.amount }}-->
+              <!--                    </div>-->
+              <!--                  </div>-->
 
-            <div @click.stop="cehuiClick(item)" v-show="item.status == 2" class="v-item-bottom-btn g-flex-align-center g-flex-justify-center">
-              <span>{{ i18n2.cehuitikuanText }}</span>
+              <!--                  <div class="v-bottom-list-item g-flex-column g-flex-align-end">-->
+              <!--                    <div class="v-bottom-list-item-title">-->
+              <!--                      {{ i18n3.timeText }}-->
+              <!--                    </div>-->
+              <!--                    <div class="v-bottom-list-item-val">-->
+              <!--                      {{ formatDate(item.create_time, 'MM/DD HH:mm') }}-->
+              <!--                    </div>-->
+              <!--                  </div>-->
+              <!--                </div>-->
+              <!--                <div @click.stop="cehuiClick(item)" v-show="item.status == 2 && navTypeVal == 2" class="v-item-bottom-btn g-flex-align-center g-flex-justify-center">-->
+              <!--                  <span>{{ i18n2.cehuitikuanText }}</span>-->
+              <!--                </div>-->
             </div>
-          </div>
-        </van-list>
-        <!-- </van-pull-refresh> -->
-        <NoList v-show="!list.list.length" />
+          </van-list>
+          <!-- </van-pull-refresh> -->
+          <NoList v-show="!list.list.length" />
+        </div>
       </div>
+    </section>
+<!--  </div>-->
+    <div class="v-history-container g-flex-column">
+
+
       <CashoutDetailPop :typeVal="navTypeVal" ref="refCashoutDetailPop" />
     </div>
   </div>
@@ -96,13 +157,18 @@ import { reactive, ref, computed } from 'vue';
 import useStore from '@/store/index.js'
 import { useI18n } from "vue-i18n";
 import { inoutClass, formatDate, filtersRealStatusClass, dotDealWith } from '@/utils/index.js'
-import { Dialog, Toast } from 'vant'; 
+import { Dialog, Toast } from 'vant';
+import left from "@/assets/img/left.png";
+import topImg from "@/assets/img/topimg.png";
 // pinia状态管理仓库
 const store = useStore();
 
 const i18nObj = useI18n()
 const i18n = computed(() => {
   return i18nObj.tm('cashoutHistory')
+})
+const i18nc = computed(() => {
+  return i18nObj.tm('cashoutDetailPop')
 })
 const i18n2 = computed(() => {
   return i18nObj.tm('gongyong')
@@ -114,7 +180,7 @@ function cehuiClick(item) {
     cancelButtonColor: '#000',
     confirmButtonColor: 'var(--g-main_color)'
   })
-    .then(() => { 
+    .then(() => {
       apiCeHuiCashOutHandel(item)
     }).catch(() => {});
 }
@@ -190,6 +256,100 @@ function filtersRealStatus(status) {
 </script>
 
 <style lang='scss'>
+@import "@/styles/index";
+section{
+  background: #FFFFFF;
+  height: 635px;
+  box-shadow: 2px 1px 7px 2px rgba(12,13,12,0.07);
+  border-radius: 14px;
+  padding: 8px;
+  margin: 8px 20px 0;
+  //.v-licai-container-box{
+  //  height: 100%;
+    .v-my-bill-container{
+      height: calc(100% - 40px);
+      overflow-y: auto;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      .v-list{
+        margin-top: 21px;
+      }
+      .v-finance-list-box{
+        height: 100%;
+        .v-list-item{
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          background: #FFFFFF;
+          box-shadow: 2px 1px 7px 2px rgba(12,13,12,0.07);
+          border-radius: 10px;
+          padding: 6px 9px;
+          margin-bottom: 36px;
+          &:last-child{
+            margin-bottom: 0;
+          }
+          p{
+            font-weight: 500;
+            font-size: 13px;
+            margin-bottom: 4px;
+            color: #000000;
+            span{
+              color:#808080;
+            }
+            &:first-child{
+              margin-bottom: 13px;
+              font-size: 14px;
+              font-weight: bold;
+            }
+            &:last-child{
+              font-weight: 400;
+              font-size: 15px;
+              color: #000000;
+              margin-top: 10px;
+            }
+          }
+          .v-list-item-top-money{
+            font-weight: bold;
+            margin-right: 13px;
+            font-size: 20px;
+          }
+          .left{
+            span{
+              width: 200px;
+              display: inline-block;
+              word-break: break-all;
+            }
+          }
+          .right{
+            p{
+              font-weight: bold;
+              font-size: 23px;
+              color: #C23030;
+              &:last-child{
+                font-size: 14px;
+                color: #000000;
+                opacity: 1;
+                font-weight: bold;
+                text-align: right;
+              }
+              span{
+                display: inline-block;
+                width: 3px;
+                height: 11px;
+                margin-right: 4px;
+                background: #C23030;
+                border-radius: 1px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+//}
+
+
 .v_cashout_history {
   height: 100%;
   overflow: auto;

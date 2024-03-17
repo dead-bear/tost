@@ -1,21 +1,7 @@
 <template>
   <div class="v_main g-flex-column">
     <div class="v-main-head g-flex-align-center">
-      <div @click="mycenterClick" class="v-main-head-left g-flex-align-center">
-        <img src="/img/icon/home_top_person.png" alt="" />
-      </div>
-      <!-- <div class="v-main-head-middle g-flex-justify-center g-flex-align-center">
-        <img :src="store.banner.logo[1]" alt="" />
-      </div> -->
-      <div class="v-main-head-right g-flex-align-center">
-        <div @click="kefuClick" class="v-main-head-right-img g-flex-align-center">
-          <img src="/img/icon/icon_service.png" alt="">
-        </div>
-        <div @click="$router.push({ name: 'msgcenter' })" class="v-main-head-right-img v-main-head-right-img-msg g-flex-align-center">
-          <div class="v-main-head-right-have-msg" v-show="unReadNums"></div>
-          <img src="/img/icon/home_top_news.png" alt="">
-        </div>
-      </div>
+      <img src="@/assets/img/topimg.png" alt="logo" class="public_headerLogo">
     </div>
     <div class="v-main-container">
       <van-swipe class="v-main-swipe" :autoplay="3000" indicator-color="#644fdd">
@@ -24,26 +10,66 @@
           <img :src="item.img" alt="" />
         </van-swipe-item>
       </van-swipe>
+      <div class="tips">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
+      </div>
+      <div class="middle-fun">
+        <p>
+          <img :src="Cooperate" alt="">
+          <span>Cooperate</span>
+        </p>
+        <p>
+          <img :src="Help" alt="">
+          <span>Help</span>
+        </p>
+        <p>
+          <img :src="Questions" alt="">
+          <span>Questions</span>
+        </p>
+      </div>
+      <div v-if="store.system.AboutUs" class="v-main-bottom-part-aboutus-video">
+        <VideoPlayer @emitLoadVideo="emitLoadVideo" :needAsyncLoad="needAsyncLoad" :url="store.system.AboutUs" :pic="store.system.AboutUsPic" ref="refVideoPlayer" />
+      </div>
 
-      <!-- 通知栏2 -->
-      <!--  -->
-      <div v-if="noticeList.list.length" @click="noticeClick" class="v-notice-two g-flex-align-center">
-        <div class="v-notice-two-left g-flex-align-center">
-          <img src="/img/icon/news_icon.png" alt="" />
-        </div>
-        <van-notice-bar scrollable :speed="80">
-          <p class="v-notice-two-tips-val">
-            <span v-for="(item, index) in noticeList.list" :key="index">
-              {{  item.des }}
-            </span>
+      <div class="bottom-fun">
+        <div>
+          <img :src="tradingfunds" alt="">
+          <p>
+            <span>Trading funds</span>
+            <span>183,505,305USDT</span>
           </p>
-        </van-notice-bar>
-        <div @click.stop="$router.push({ name: 'msgcenter', query: { type: 2 } })" class="v-notice-two-right g-flex-align-center">
-          <!-- <span>&gt;</span> -->
-          <span>{{ i18n.moreText }}&gt;</span>
-          <img src="/img/icon/home_notice_more.png" alt="">
+        </div>
+        <div>
+          <img :src="tradingfunds" alt="">
+          <p>
+            <span>Operation hours</span>
+            <span>1,943Sky</span>
+          </p>
         </div>
       </div>
+      <div class="time">
+        <img :src="time" alt="">
+        Nevada Time: March 11   01:45
+      </div>
+      <!-- 通知栏2 -->
+      <!--  -->
+<!--      <div  @click="noticeClick" class="v-notice-two g-flex-align-center">-->
+<!--        <div class="v-notice-two-left g-flex-align-center">-->
+<!--          <img src="/img/icon/news_icon.png" alt="" />-->
+<!--        </div>-->
+<!--        <van-notice-bar scrollable :speed="80">-->
+<!--          <p class="v-notice-two-tips-val">-->
+<!--            <span v-for="(item, index) in noticeList.list" :key="index">-->
+<!--              {{item.des }}-->
+<!--            </span>-->
+<!--          </p>-->
+<!--        </van-notice-bar>-->
+<!--        <div @click.stop="$router.push({ name: 'msgcenter', query: { type: 2 } })" class="v-notice-two-right g-flex-align-center">-->
+<!--          &lt;!&ndash; <span>&gt;</span> &ndash;&gt;-->
+<!--          <span>{{ i18n.moreText }}&gt;</span>-->
+<!--          <img src="/img/icon/home_notice_more.png" alt="">-->
+<!--        </div>-->
+<!--      </div>-->
 
       <div v-if="false" class="v-main-card-one">
         <div class="v-main-card-one-list g-flex-align-center">
@@ -60,12 +86,9 @@
             </div>
           </div>
         </div>
-        
+
       </div>
 
-      <div v-if="store.system.AboutUs" class="v-main-bottom-part-aboutus-video">
-        <VideoPlayer @emitLoadVideo="emitLoadVideo" :needAsyncLoad="needAsyncLoad" :url="store.system.AboutUs" :pic="store.system.AboutUsPic" ref="refVideoPlayer" />
-      </div>
 
       <div class="v-main-card-two">
         <div class="v-main-card-two-list g-flex-align-center">
@@ -128,77 +151,77 @@
               <div class="v-main-card-three-left-desc g-flex-align-center">
                 {{ i18n.lianghuaJiaoYiTipsText }}
               </div>
-            </div> 
+            </div>
           </div>
           <div class="v-main-card-three-right">
             <i class="iconfont icon-you"></i>
           </div>
         </div>
-       
+
       </div> -->
 
-      <div class="v-main-bottom">
-        <!-- <div class="v-main-nav-list g-flex-align-center">
-          <div :class="form.navType == 1 ? 'active': ''" @click="typeItemClick(1)" class="v-main-nav-item">
-            <span>{{ i18n.shishiHangQingText }}</span>
-          </div>
-          <div :class="form.navType == 2 ? 'active': ''" @click="typeItemClick(2)" class="v-main-nav-item">
-            <span>{{ i18n.huiyuanDongTaiText }}</span>
-          </div>
-        </div> -->
-        <div v-show="form.navType == 1" class="v-main-bottom-list-one-box">
-          <div class="v-main-bottom-list-one-head g-flex-align-center">
-            <div class="v-main-bottom-list-one-head-item v-main-bottom-list-one-head-item-name">
-              <span>{{ i18n.jiaoyiDuiText }}</span>
-            </div>
-            <div class="v-main-bottom-list-one-head-item v-main-bottom-list-one-head-item-price">
-              <span>{{ i18n.newMostPriceText }}</span>
-            </div>
-            <div class="v-main-bottom-list-one-head-item v-main-bottom-list-one-head-item-zhangfu g-flex-justify-center">
-              <span>{{ i18n.zhangdieFuText }}</span>
-            </div>
-          </div>
+<!--      <div class="v-main-bottom">-->
+<!--        &lt;!&ndash; <div class="v-main-nav-list g-flex-align-center">-->
+<!--          <div :class="form.navType == 1 ? 'active': ''" @click="typeItemClick(1)" class="v-main-nav-item">-->
+<!--            <span>{{ i18n.shishiHangQingText }}</span>-->
+<!--          </div>-->
+<!--          <div :class="form.navType == 2 ? 'active': ''" @click="typeItemClick(2)" class="v-main-nav-item">-->
+<!--            <span>{{ i18n.huiyuanDongTaiText }}</span>-->
+<!--          </div>-->
+<!--        </div> &ndash;&gt;-->
+<!--&lt;!&ndash;        <div v-show="form.navType == 1" class="v-main-bottom-list-one-box">&ndash;&gt;-->
+<!--&lt;!&ndash;          <div class="v-main-bottom-list-one-head g-flex-align-center">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="v-main-bottom-list-one-head-item v-main-bottom-list-one-head-item-name">&ndash;&gt;-->
+<!--&lt;!&ndash;              <span>{{ i18n.jiaoyiDuiText }}</span>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="v-main-bottom-list-one-head-item v-main-bottom-list-one-head-item-price">&ndash;&gt;-->
+<!--&lt;!&ndash;              <span>{{ i18n.newMostPriceText }}</span>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="v-main-bottom-list-one-head-item v-main-bottom-list-one-head-item-zhangfu g-flex-justify-center">&ndash;&gt;-->
+<!--&lt;!&ndash;              <span>{{ i18n.zhangdieFuText }}</span>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;          </div>&ndash;&gt;-->
 
-          <div class="v-main-bottom-list-one">
-            <div class="v-main-bottom-list-one-item g-flex-align-center"  v-for="(item, index) in procudtList.list" :key="index">
-              <div class="v-main-bottom-list-one-item-second g-flex-align-center">
-                <div class="v-main-bottom-list-one-item-img g-flex-align-center">
-                  <img :src="item.icon" alt=""/>
-                </div>
-                <div class="v-main-bottom-list-one-item-text g-flex-align-center">
-                  <span>{{  item.title  }}</span>
-                </div>
-              </div>
-              <div class="v-main-bottom-list-one-item-second g-flex-align-center">
-                <div :class="upDownClass(item.kline.zhangfu)" class="v-main-bottom-list-one-item-price g-flex-align-center">
-                  <span>{{  item.kline.close  }}</span>
-                </div>
-              </div>
-              <div class="v-main-bottom-list-one-item-second g-flex-justify-center g-flex-align-center">
-                <div :class="upDownBgClass(item.kline.zhangfu)" class="v-main-bottom-list-one-item-zhangfu g-flex-align-center g-flex-justify-center">
-                  <span>{{ filtersZhangfu(item.kline.zhangfu, 2) }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+<!--&lt;!&ndash;          <div class="v-main-bottom-list-one">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="v-main-bottom-list-one-item g-flex-align-center"  v-for="(item, index) in procudtList.list" :key="index">&ndash;&gt;-->
+<!--&lt;!&ndash;              <div class="v-main-bottom-list-one-item-second g-flex-align-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="v-main-bottom-list-one-item-img g-flex-align-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <img :src="item.icon" alt=""/>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="v-main-bottom-list-one-item-text g-flex-align-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <span>{{  item.title  }}</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;              </div>&ndash;&gt;-->
+<!--&lt;!&ndash;              <div class="v-main-bottom-list-one-item-second g-flex-align-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div :class="upDownClass(item.kline.zhangfu)" class="v-main-bottom-list-one-item-price g-flex-align-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <span>{{  item.kline.close  }}</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;              </div>&ndash;&gt;-->
+<!--&lt;!&ndash;              <div class="v-main-bottom-list-one-item-second g-flex-justify-center g-flex-align-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div :class="upDownBgClass(item.kline.zhangfu)" class="v-main-bottom-list-one-item-zhangfu g-flex-align-center g-flex-justify-center">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <span>{{ filtersZhangfu(item.kline.zhangfu, 2) }}</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;              </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;          </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
 
 
-        <!-- <div v-if="false" class="v-main-bottom-list-two-box">
-          <div class="v-main-bottom-list-two-head g-flex-align-center">
-            <div class="v-main-bottom-list-two-head-item v-main-bottom-list-two-head-item-name">
-              <span>{{ i18n.huiyuanNameText }}</span>
-            </div>
-            <div class="v-main-bottom-list-two-head-item v-main-bottom-list-two-head-item-shouyi">
-              <span>{{ i18n.shouyiText }}</span>
-            </div>
-            <div class="v-main-bottom-list-two-head-item v-main-bottom-list-two-head-item-status g-flex-justify-center">
-              <span>{{ i18n.zhuangtaiText }}</span>
-            </div>
-          </div>
-            <MainBottomSwiper :list="radomList.list" ref="refMainBottomSwiper"/>
-        </div> -->
-      </div>
+<!--        &lt;!&ndash; <div v-if="false" class="v-main-bottom-list-two-box">-->
+<!--          <div class="v-main-bottom-list-two-head g-flex-align-center">-->
+<!--            <div class="v-main-bottom-list-two-head-item v-main-bottom-list-two-head-item-name">-->
+<!--              <span>{{ i18n.huiyuanNameText }}</span>-->
+<!--            </div>-->
+<!--            <div class="v-main-bottom-list-two-head-item v-main-bottom-list-two-head-item-shouyi">-->
+<!--              <span>{{ i18n.shouyiText }}</span>-->
+<!--            </div>-->
+<!--            <div class="v-main-bottom-list-two-head-item v-main-bottom-list-two-head-item-status g-flex-justify-center">-->
+<!--              <span>{{ i18n.zhuangtaiText }}</span>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--            <MainBottomSwiper :list="radomList.list" ref="refMainBottomSwiper"/>-->
+<!--        </div> &ndash;&gt;-->
+<!--      </div>-->
 
 
     </div>
@@ -213,6 +236,11 @@
 </template>
 
 <script setup>
+import Cooperate from '@/assets/img/Cooperate.png'
+import Help from '@/assets/img/Help.png'
+import Questions from '@/assets/img/Questions.png'
+import tradingfunds from '@/assets/img/tradingfunds.png'
+import time from '@/assets/img/time.png'
 //import NoticePop from '@/components/NoticePop.vue'
 import NoticeUserPop from '@/components/NoticeUserPop.vue'
 import MainBottomSwiper from '@/components/MainBottomSwiper.vue'
@@ -504,77 +532,139 @@ onUnmounted(() => {
 <style lang='scss'>
 .v_main {
   height: 100%;
+  //padding-bottom: 90px;
   overflow: auto;
-  background-color: var(--g-main-bgColor);
+  background-image: url('@/assets/img/mycenter_ headBg.png'), url('@/assets/img/home_2.png');
+  background-repeat: no-repeat, no-repeat;
+  background-position: top center, bottom center;
+  background-size: 100% 98px, 100% 317px;
+  background-color: #FAFAFA;
+
+  //background-color: var(--g-main-bgColor);
   .v-main-head {
-    position: fixed;
-    left: 0;
-    top: 0;
     width: 100%;
-    z-index: 9;
-    height: 46px;
-    // background: var(--g-main_bgColor);
-    background-color: var(--g-main-bgColor);
-    .v-main-head-left {
-      position: absolute;
-      left: 0;
-      padding: 0 16px;
-      height: 100%;
-
-      img {
-        width: 30px;
-      }
-    }
-
-    .v-main-head-middle {
-      flex: 1;
-      height: 100%;
-
-      img {
-        width: 100px;
-      }
-    }
-
-    .v-main-head-right {
-      position: absolute;
-      right: 0;
-      padding: 0 12px 0 6px;
-      height: 100%;
-      .v-main-head-right-img {
-        margin-right: 10px;
-        position: relative;
-        &.v-main-head-right-img-msg {
-          margin-right: 0;
-        }
-        img {
-          width: 30px;
-        }
-        .v-main-head-right-have-msg {
-          position: absolute;
-          top: 5px;
-          right: 2px;
-          background: #e82020;
-          width: 8px;
-          height: 8px;
-          border-radius: 100%;
-          transform: translateX(50%) translateY(-50%);
-        }
-      }
+    background-size: 100% 100%;
+    padding: 6px 0 0;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    img{
+      height: 39px;
+      width: 133px;
     }
   }
 
   .v-main-container {
     flex: 1;
-    padding-top: 46px;
+    padding-top: 20px;
     overflow: auto;
+    .tips{
+      margin: 10px 14px 0;
+      padding: 40px;
+      background: black;
+      border-radius: 15px;
+      p{
+        font-weight: bold;
+        font-size: 14px;
+        color: #FFFFFF;
+      }
+      //background: url('@/assets/img/notice-head.png') no-repeat center center;
+    }
+    .middle-fun{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+      p{
+        width: 107px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        background: #FFFFFF;
+        box-shadow: 2px 1px 7px 2px rgba(12,13,12,0.1);
+        border-radius: 15px;
+        font-weight: bold;
+        font-size: 11px;
+        color: #000000;
+        img{
+          height: 47px;
+          margin-bottom: 18px;
+        }
+        &:nth-of-type(2){
+          margin: 0 12px;
+        }
+      }
+    }
+    .bottom-fun{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 17px;
+      div{
+        padding: 12px;
+        width: calc(100% / 2 - 8.5px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #FFFFFF;
+        box-shadow: 2px 1px 7px 2px rgba(12,13,12,0.1);
+        border-radius: 15px;
+        border: 1px solid #000000;
+        p{
+          span{
+            &:first-child{
+              font-weight: bold;
+              font-size: 10px;
+              color: #000000;
+            }
+            &:last-child{
+              font-weight: bold;
+              font-size: 12px;
+              display: inline-block;
+              color: #000000;
+              width: 100px;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              overflow: hidden;
+            }
+          }
+        }
+        img{
+          width: 30px;
+          margin-right: 14px;
+        }
+      }
+    }
+    .time{
+      background: #FFFFFF;
+      margin: 11px 14px 0;
+      box-shadow: 2px 1px 7px 2px rgba(12,13,12,0.1);
+      border-radius: 11px;
+      border: 1px solid #000000;
+      padding: 7px 0;
+     display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      font-size: 12px;
+      color: #000000;
+      img{
+        width: 17px;
+        height: 17px;
+        margin-right: 6px;
+      }
+    }
 
     .v-main-swipe {
       .van-swipe__track {
         .v-main-swipe-item {
-          padding: 0px 10px 0px 10px;
+          padding: 0px 14px 0px 14px;
           border-radius: 8px;
           img {
             width: 100%;
+            height: 140px;
             object-fit: cover;
             border-radius: 8px;
           }
@@ -592,7 +682,7 @@ onUnmounted(() => {
         img {
           height: 20px;
         }
-       
+
       }
       .v-notice-two-tips-val {
         color: var(--g-black);
@@ -662,9 +752,10 @@ onUnmounted(() => {
         }
       }
     }
-    
+
     .v-main-card-two {
       padding: 10px;
+      padding-bottom: 90px;
       .v-main-card-two-list {
         padding: 15px 0px;
         box-shadow: 0px 0px 3px #d3d3d3;;
@@ -860,9 +951,9 @@ onUnmounted(() => {
 
     }
     .v-main-bottom-part-aboutus-video {
-      margin: 10px 10px 0px 10px;
-      height: 180px;
-      border-radius: 5px;
+      margin: 19px 14px 20px;
+      height: 165px;
+      border-radius: 15px;
       overflow: hidden;
       video {
         width: 100%;
