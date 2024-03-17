@@ -67,7 +67,7 @@
         
         
       </div>
-
+<!-- 收入部分 -->
       <div class="v-mycenter-top-card">
         <van-grid class="v-mycenter-top-card-list" :border="false" :column-num="3" style="display: none;">
           <van-grid-item>
@@ -229,7 +229,24 @@
 
         </div>
       </div>
-
+      <div class="v-mycenter-top-card2 g-flex-justify-between">
+        <div class="v-mycenter-top-card-list g-flex-justify-center">
+          <img src="@/assets/img/mycenter_ recharge.png" />
+          <span>
+            {{ i18n.recharge }}
+          </span>
+        </div>
+        <div class="v-mycenter-top-card-list g-flex-justify-center">
+          <img src="@/assets/img/mycenter_ withdraw.png" />
+        </div>
+        <div class="v-mycenter-top-card-list g-flex-justify-center">
+          <img src="@/assets/img/mycenter_ cancelWithdraw.png" />
+        </div>
+        <div class="v-mycenter-top-card-list g-flex-justify-center">
+          <img src="@/assets/img/mycenter_ fundDetails.png" />
+        </div>
+      </div>
+      
       <div v-if="userInfo.levelNext.id" class="v-mycenter-top-next">
         <div class="v-mycenter-top-next-card">
           <div class="v-mycenter-top-next-card-top g-flex-align-center">
@@ -283,6 +300,11 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="">
+
+
       </div>
       <div class="v-mycenter-content-list">
         <!-- 公司简介 -->
@@ -894,7 +916,7 @@ let selectLangObj = computed(() => {
 
     .v-mycenter-top-card {
       padding: 10px 0px;
-      box-shadow: 0px 0px 5px #d3d3d3;;
+      box-shadow: 2px 1px 7px 2px rgba(12, 13, 12, 0.1);
       border-radius: 10px;
       margin-bottom: 20px;
       margin-top: 20px;
@@ -1119,6 +1141,23 @@ let selectLangObj = computed(() => {
         color: var(--g-white);
         font-size: 14px;
         border-radius: 4px;
+      }
+    }
+
+    .v-mycenter-top-card2 {
+      .v-mycenter-top-card-list {
+        box-shadow: 2px 1px 7px 2px rgba(12, 13, 12, 0.1);
+        border-radius: 10px;
+        width: 22%;
+        padding: 20px 0px;
+        img {
+          width: 50px;
+          height: auto;
+        }
+        span {
+          font-weight: 900;
+          font-size: 18px;
+        }
       }
     }
   }
